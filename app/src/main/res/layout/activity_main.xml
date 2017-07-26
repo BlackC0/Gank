@@ -2,14 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/toolbar_bg"
-        android:visibility="visible"
-        app:title="干货"
-        app:titleTextColor="@android:color/white" />
+        android:layout_height="48dp"
+        android:background="@color/toolbar_bg">
+
+        <LinearLayout
+            android:id="@+id/mainActivity_LinearLayout_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <gank.hyx.com.gank.application_extra.view.NoScrollViewPager
+        android:id="@+id/mainActivity_NoScrollViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></gank.hyx.com.gank.application_extra.view.NoScrollViewPager>
+
+    <me.majiajie.pagerbottomtabstrip.PageBottomTabLayout
+        android:id="@+id/mainActivity_PageBottomTabLayout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="#FFF"
+        android:elevation="8dp" />
+
 </LinearLayout>
