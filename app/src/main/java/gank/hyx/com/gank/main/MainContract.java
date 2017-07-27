@@ -22,8 +22,6 @@ import gank.hyx.com.gank.BaseView;
 public interface MainContract {
 
     interface View extends BaseView<Presenter> {
-        void gotoSearch();
-
         void gotoGoods();
 
         void gotoPresent();
@@ -32,6 +30,11 @@ public interface MainContract {
     }
 
     interface Presenter extends BasePresenter {
+        void search();
+
+        void goods();
+
+        void my();
 
     }
 

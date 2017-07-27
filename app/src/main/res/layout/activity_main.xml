@@ -4,21 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/toolbar_bg">
-
-        <LinearLayout
-            android:id="@+id/mainActivity_LinearLayout_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
-
     <gank.hyx.com.gank.application_extra.view.NoScrollViewPager
         android:id="@+id/mainActivity_NoScrollViewPager"
         android:layout_width="match_parent"
