@@ -1,4 +1,4 @@
-package gank.hyx.com.gank.main.present;
+package gank.hyx.com.gank.ui.main.present;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
-import gank.hyx.com.gank.BaseFragment;
+import gank.hyx.com.gank.ui.BaseFragment;
 import gank.hyx.com.gank.R;
 
 public class PresentFragment extends BaseFragment {

@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package gank.hyx.com.gank;
+package gank.hyx.com.gank.ui;
 
-public interface BasePresenter {
+public interface BaseView<T> {
 
-    void start();
+    void setPresenter(T presenter);
 
 }

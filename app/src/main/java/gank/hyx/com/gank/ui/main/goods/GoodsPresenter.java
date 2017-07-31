@@ -1,4 +1,4 @@
-package gank.hyx.com.gank.main.goods;
+package gank.hyx.com.gank.ui.main.goods;
 
 /**
  * Created by Black.C on 2017/7/25.

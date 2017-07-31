@@ -1,4 +1,4 @@
-package gank.hyx.com.gank.model.view;
+package gank.hyx.com.gank.view;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

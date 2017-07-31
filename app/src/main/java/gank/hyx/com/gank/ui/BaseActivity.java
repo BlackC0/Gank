@@ -1,4 +1,4 @@
-package gank.hyx.com.gank;
+package gank.hyx.com.gank.ui;
 
 
 import android.content.Context;
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import gank.hyx.com.gank.model.network.RestConfigure;
+import gank.hyx.com.gank.network.RestConfigure;
 import retrofit2.Retrofit;
 
 public class BaseActivity extends AppCompatActivity {

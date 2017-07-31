@@ -1,4 +1,4 @@
-package gank.hyx.com.gank.main;
+package gank.hyx.com.gank.ui.main;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import gank.hyx.com.gank.BaseFragment;
+import gank.hyx.com.gank.ui.BaseFragment;
 
 /**
  * Created by Black.C on 2016/9/12.

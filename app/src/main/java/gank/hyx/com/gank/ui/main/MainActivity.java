@@ -1,4 +1,4 @@
-package gank.hyx.com.gank.main;
+package gank.hyx.com.gank.ui.main;
 
 import android.os.Bundle;
 
@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import gank.hyx.com.gank.BaseActivity;
-import gank.hyx.com.gank.BaseFragment;
+import gank.hyx.com.gank.ui.BaseActivity;
+import gank.hyx.com.gank.ui.BaseFragment;
 import gank.hyx.com.gank.R;
-import gank.hyx.com.gank.main.goods.GoodsFragment;
-import gank.hyx.com.gank.main.my.MyFragment;
-import gank.hyx.com.gank.main.present.PresentFragment;
-import gank.hyx.com.gank.model.view.NoScrollViewPager;
+import gank.hyx.com.gank.ui.main.goods.GoodsFragment;
+import gank.hyx.com.gank.ui.main.my.MyFragment;
+import gank.hyx.com.gank.ui.main.present.PresentFragment;
+import gank.hyx.com.gank.view.NoScrollViewPager;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageBottomTabLayout;
 

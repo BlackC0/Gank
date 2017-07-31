@@ -1,4 +1,4 @@
-package gank.hyx.com.gank.model.network;
+package gank.hyx.com.gank.network;
 
 import com.google.gson.Gson;
 

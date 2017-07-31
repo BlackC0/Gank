@@ -1,4 +1,4 @@
-package gank.hyx.com.gank;
+package gank.hyx.com.gank.ui;
 
 import android.content.Context;
 import android.os.Bundle;
