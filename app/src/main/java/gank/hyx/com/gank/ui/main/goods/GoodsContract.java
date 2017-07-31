@@ -11,18 +11,16 @@ public interface GoodsContract {
 
     interface View extends BaseView<Presenter> {
 
-        void gotoGoodsDetail();
+        void gotoSearch();
 
+        void gotoditGoodsLists();
 
     }
     interface Presenter extends BasePresenter {
-        void GoodsDetail();
 
-        //获取列表数据（）
-        void getListData();
+        void search();
 
-
-
+        void editGoodsLists();//编辑干货的列表项
     }
 
 }
