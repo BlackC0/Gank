@@ -6,32 +6,31 @@
     android:orientation="vertical">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/bar_layout"
+        android:id="@+id/goodsFragment_AppBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
 
         <RelativeLayout
-            android:id="@+id/addlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/toolbar_bg">
 
             <ImageView
-                android:id="@+id/icon_add"
+                android:id="@+id/goodsFragment_ImageView_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="10dp"
-                android:src="@android:drawable/ic_menu_add" />
+                app:srcCompat="@drawable/ic_add_black_24dp" />
 
             <android.support.design.widget.TabLayout
-                android:id="@+id/tablayout"
+                android:id="@+id/goodsFragment_TabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_toLeftOf="@+id/icon_add"
+                android:layout_toLeftOf="@+id/goodsFragment_ImageView_add"
                 android:background="@color/toolbar_bg"
                 app:tabIndicatorColor="@color/white"
                 app:tabSelectedTextColor="@color/white"
@@ -46,20 +45,18 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/goodsFragment_ViewPager"
         android:layout_width="match_parent"
-        android:layout_below="@+id/bar_layout"
-        android:layout_height="match_parent">
-    </android.support.v4.view.ViewPager>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/goodsFragment_AppBarLayout"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatButton"
+        android:id="@+id/goodsFragment_FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="16sp"
-
-        />
-
+        app:backgroundTint="@color/toolbar_bg"
+        app:srcCompat="@drawable/ic_search_white_24dp" />
 
 
 </RelativeLayout>

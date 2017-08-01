@@ -10,7 +10,7 @@ public class PresentPresenter implements PresentContract.Presenter {
 
     public PresentPresenter(PresentContract.View mMainActivityView) {
         this.mMainActivityView = mMainActivityView;
-        mMainActivityView.setPresenter(this);
+        mMainActivityView.setmPresenter(this);
     }
 
     @Override

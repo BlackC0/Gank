@@ -10,6 +10,7 @@ import gank.hyx.com.gank.ui.BaseActivity;
 import gank.hyx.com.gank.ui.BaseFragment;
 import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.ui.main.goods.GoodsFragment;
+import gank.hyx.com.gank.ui.main.goods.GoodsPresenter;
 import gank.hyx.com.gank.ui.main.my.MyFragment;
 import gank.hyx.com.gank.ui.main.present.PresentFragment;
 import gank.hyx.com.gank.view.NoScrollViewPager;
@@ -41,6 +42,8 @@ public class MainActivity extends BaseActivity{
         fragmentList.add(goodsFragment);
         fragmentList.add(myFragment);
         fragmentList.add(presentFragment);
+
+        new GoodsPresenter(goodsFragment);
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), fragmentList, this);
         mainActivity_NoScrollViewPager.setNoScroll(true);

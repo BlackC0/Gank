@@ -4,9 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 
-/**
- * Created by Administrator on 2016/3/24.
- */
 public class BaseFragment extends Fragment {
 
     private Fragment mFragment;
