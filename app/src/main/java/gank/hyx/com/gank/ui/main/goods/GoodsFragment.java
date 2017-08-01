@@ -73,7 +73,7 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
     }
 
     @Override
-    public void gotoditGoodsLists() {
+    public void gotoEditGoodsLists() {
         // TODO: 2017/8/1 跳转到页面列表项页面
 
     }
@@ -87,10 +87,10 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.goodsFragment_ImageView_add:
-                mPresenter.editGoodsLists();
+                mPresenter.prepareEditGoodsLists();
                 break;
             case R.id.goodsFragment_FloatingActionButton:
-                mPresenter.search();
+                mPresenter.prepareSearch();
                 break;
         }
     }

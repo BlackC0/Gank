@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/listContentFragment_TwinklingRefreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:tr_head_height="100dp"
+    app:tr_wave_height="180dp">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/listContentFragment_RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>

@@ -20,12 +20,12 @@ public class GoodsPresenter implements GoodsContract.Presenter {
     }
 
     @Override
-    public void search() {
+    public void prepareSearch() {
         mView.gotoSearch();
     }
 
     @Override
-    public void editGoodsLists() {
-        mView.gotoditGoodsLists();
+    public void prepareEditGoodsLists() {
+        mView.gotoEditGoodsLists();
     }
 }

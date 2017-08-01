@@ -18,15 +18,15 @@ public interface GoodsContract {
 
         void gotoSearch();
 
-        void gotoditGoodsLists();
+        void gotoEditGoodsLists();
 
     }
 
     interface Presenter extends BasePresenter {
 
-        void search();
+        void prepareSearch();
 
-        void editGoodsLists();//编辑干货的列表项
+        void prepareEditGoodsLists();//编辑干货的列表项
     }
 
 }

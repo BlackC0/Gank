@@ -35,4 +35,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.lcodecorex:tkrefreshlayout:1.0.7'
 }
