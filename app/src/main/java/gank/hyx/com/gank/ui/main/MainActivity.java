@@ -76,7 +76,7 @@ public class MainActivity extends BaseActivity {
         fragmentList.add(myFragment);
         fragmentList.add(presentFragment);
 
-        new GoodsPresenter(goodsFragment);
+        new GoodsPresenter(goodsFragment,mActivity);
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), fragmentList, this);
         mainActivity_NoScrollViewPager.setNoScroll(true);

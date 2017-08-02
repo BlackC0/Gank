@@ -23,7 +23,7 @@ public interface Request {
     /**
      * 搜索
      *
-     * @param query    类型：  搜索的关键词
+     * @param query    搜索的关键词
      * @param category 类型：  all | Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
      * @param count    数据量
      * @param page     页数

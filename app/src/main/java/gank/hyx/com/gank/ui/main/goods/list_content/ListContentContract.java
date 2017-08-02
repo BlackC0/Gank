@@ -1,5 +1,8 @@
 package gank.hyx.com.gank.ui.main.goods.list_content;
 
+import java.util.ArrayList;
+
+import gank.hyx.com.gank.network.model.CommonData;
 import gank.hyx.com.gank.ui.BasePresenter;
 import gank.hyx.com.gank.ui.BaseView;
 
@@ -13,11 +16,9 @@ public interface ListContentContract {
 
         void gotoGoodsDetail();
 
-        // TODO: 2017/8/2 模型还没确定 需要看api
-        void refresh();
+        void refresh(ArrayList<CommonData> datas);
 
-        // TODO: 2017/8/2 同上
-        void loadMore();
+        void loadMore(ArrayList<CommonData> datas);
 
     }
 
