@@ -6,5 +6,11 @@ package gank.hyx.com.gank.tool;
 
 public class Constant {
 
+    //获取所有干货
+    public static final String CommonDataUrl = "http://gank.io/api/data/";
+
+    //获取搜索干货
+    public static final String SearchDataUrl = "http://gank.io/api/search/";
+
 
 }

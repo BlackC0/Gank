@@ -16,4 +16,19 @@ public class ListContentPresenter implements ListContentContract.Presenter {
     @Override
     public void start() {
     }
+
+    @Override
+    public void prepareRefresh() {
+
+    }
+
+    @Override
+    public void prepareLoadMore() {
+
+    }
+
+    @Override
+    public void prepareGoodsDetail() {
+
+    }
 }

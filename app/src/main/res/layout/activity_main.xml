@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <gank.hyx.com.gank.view.view.NoScrollViewPager
+    <gank.hyx.com.gank.view.NoScrollViewPager
         android:id="@+id/mainActivity_NoScrollViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></gank.hyx.com.gank.view.view.NoScrollViewPager>
+        android:layout_weight="1"></gank.hyx.com.gank.view.NoScrollViewPager>
 
     <me.majiajie.pagerbottomtabstrip.PageBottomTabLayout
         android:id="@+id/mainActivity_PageBottomTabLayout_bottom"

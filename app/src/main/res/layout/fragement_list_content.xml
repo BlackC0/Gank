@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:tr_head_height="100dp"
-    app:tr_wave_height="180dp">
+    app:tr_max_head_height="180dp">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listContentFragment_RecyclerView"
