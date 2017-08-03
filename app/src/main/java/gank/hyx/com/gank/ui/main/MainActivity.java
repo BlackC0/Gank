@@ -45,8 +45,30 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mActivity = this;
-//        initView();
-//        test();
+        initView();
+    }
+
+    private void initView() {
+        GoodsFragment goodsFragment = new GoodsFragment();
+        MyFragment myFragment = new MyFragment();
+        PresentFragment presentFragment = new PresentFragment();
+        fragmentList.add(goodsFragment);
+        fragmentList.add(myFragment);
+        fragmentList.add(presentFragment);
+
+        new GoodsPresenter(goodsFragment,mActivity);
+
+        adapter = new MainPagerAdapter(getSupportFragmentManager(), fragmentList, this);
+        mainActivity_NoScrollViewPager.setNoScroll(true);
+        mainActivity_NoScrollViewPager.setAdapter(adapter);
+
+        NavigationController navigationController = mainActivity_PageBottomTabLayout_bottom.material()
+                .addItem(R.mipmap.home_page, "干货", getResources().getColor(R.color.toolbar_bg))
+                .addItem(R.mipmap.present, "福利", getResources().getColor(R.color.toolbar_bg))
+                .addItem(R.mipmap.my, "个人", getResources().getColor(R.color.toolbar_bg))
+                .build();
+
+        navigationController.setupWithViewPager(mainActivity_NoScrollViewPager);
     }
 
     //测试api
@@ -66,28 +88,5 @@ public class MainActivity extends BaseActivity {
                 Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
             }
         });
-    }
-
-    private void initView() {
-        GoodsFragment goodsFragment = new GoodsFragment();
-        MyFragment myFragment = new MyFragment();
-        PresentFragment presentFragment = new PresentFragment();
-        fragmentList.add(goodsFragment);
-        fragmentList.add(myFragment);
-        fragmentList.add(presentFragment);
-
-        new GoodsPresenter(goodsFragment,mActivity);
-
-        adapter = new MainPagerAdapter(getSupportFragmentManager(), fragmentList, this);
-        mainActivity_NoScrollViewPager.setNoScroll(true);
-        mainActivity_NoScrollViewPager.setAdapter(adapter);
-
-        NavigationController navigationController = mainActivity_PageBottomTabLayout_bottom.material()
-                .addItem(R.mipmap.home_page, "首页", getResources().getColor(R.color.toolbar_bg))
-                .addItem(R.mipmap.present, "福利", getResources().getColor(R.color.toolbar_bg))
-                .addItem(R.mipmap.my, "个人", getResources().getColor(R.color.toolbar_bg))
-                .build();
-
-        navigationController.setupWithViewPager(mainActivity_NoScrollViewPager);
     }
 }

@@ -6,11 +6,11 @@ package gank.hyx.com.gank.ui.main.my;
 
 public class MyPresenter implements MyContract.Presenter {
 
-    private final MyContract.View mMainActivityView;
+    private final MyContract.View mView;
 
-    public MyPresenter(MyContract.View mMainActivityView) {
-        this.mMainActivityView = mMainActivityView;
-        mMainActivityView.setmPresenter(this);
+    public MyPresenter(MyContract.View mView) {
+        this.mView = mView;
+        mView.setmPresenter(this);
     }
 
     @Override

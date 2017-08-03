@@ -6,11 +6,11 @@ package gank.hyx.com.gank.ui.main.present;
 
 public class PresentPresenter implements PresentContract.Presenter {
 
-    private final PresentContract.View mMainActivityView;
+    private final PresentContract.View mView;
 
-    public PresentPresenter(PresentContract.View mMainActivityView) {
-        this.mMainActivityView = mMainActivityView;
-        mMainActivityView.setmPresenter(this);
+    public PresentPresenter(PresentContract.View mView) {
+        this.mView = mView;
+        mView.setmPresenter(this);
     }
 
     @Override

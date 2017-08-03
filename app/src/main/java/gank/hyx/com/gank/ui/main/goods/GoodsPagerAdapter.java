@@ -19,7 +19,7 @@ public class GoodsPagerAdapter extends FragmentPagerAdapter {
     private FragmentManager fm;
     private ArrayList<BaseFragment> fragmentList;
 
-    public GoodsPagerAdapter(FragmentManager fm, ArrayList<BaseFragment> fragmentList,ArrayList<String>tabNames, Context context) {
+    public GoodsPagerAdapter(FragmentManager fm, ArrayList<BaseFragment> fragmentList, ArrayList<String> tabNames, Context context) {
         super(fm);
         this.fm = fm;
         this.context = context;
@@ -39,7 +39,7 @@ public class GoodsPagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public CharSequence getPageTitle(int position) {
+    public String getPageTitle(int position) {
         return tabNames.get(position);
     }
 }

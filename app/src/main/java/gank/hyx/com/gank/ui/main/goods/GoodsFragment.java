@@ -61,9 +61,9 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
         this.fragmentsLists.clear();
         this.tabNames.addAll(tabNames);
         this.fragmentsLists.addAll(fragmentsLists);
-        adapter = new GoodsPagerAdapter(getFragmentManager(), this.fragmentsLists, tabNames, mActivity);
+        adapter = new GoodsPagerAdapter(getChildFragmentManager(), this.fragmentsLists, tabNames, mActivity);
         goodsFragment_ViewPager.setAdapter(adapter);
-        goodsFragment_ViewPager.setOffscreenPageLimit(this.fragmentsLists.size());
+        goodsFragment_ViewPager.setOffscreenPageLimit(3);
         goodsFragment_TabLayout.setupWithViewPager(goodsFragment_ViewPager);
     }
 

@@ -6,11 +6,11 @@ package gank.hyx.com.gank.ui.main.goods.list_content;
 
 public class ListContentPresenter implements ListContentContract.Presenter {
 
-    private final ListContentContract.View mMainActivityView;
+    private final ListContentContract.View mView;
 
-    public ListContentPresenter(ListContentContract.View mMainActivityView) {
-        this.mMainActivityView = mMainActivityView;
-        mMainActivityView.setmPresenter(this);
+    public ListContentPresenter(ListContentContract.View mView) {
+        this.mView = mView;
+        mView.setmPresenter(this);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class ListContentPresenter implements ListContentContract.Presenter {
 
     @Override
     public void prepareGoodsDetail() {
-
+        mView.gotoGoodsDetail();
     }
 }
