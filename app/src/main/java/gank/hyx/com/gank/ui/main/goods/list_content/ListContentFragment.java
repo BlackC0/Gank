@@ -93,7 +93,7 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
     }
 
     @Override
-    public void setmPresenter(ListContentContract.Presenter mPresenter) {
+    public void setPresenter(ListContentContract.Presenter mPresenter) {
         this.mPresenter = mPresenter;
     }
 }

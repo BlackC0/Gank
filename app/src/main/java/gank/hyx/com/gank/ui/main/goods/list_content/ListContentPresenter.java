@@ -10,7 +10,7 @@ public class ListContentPresenter implements ListContentContract.Presenter {
 
     public ListContentPresenter(ListContentContract.View mView) {
         this.mView = mView;
-        mView.setmPresenter(this);
+        mView.setPresenter(this);
     }
 
     @Override

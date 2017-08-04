@@ -18,6 +18,6 @@ package gank.hyx.com.gank.ui;
 
 public interface BaseView<T> {
 
-    void setmPresenter(T mPresenter);
+    void setPresenter(T mPresenter);
 
 }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -35,5 +36,250 @@
             android:textSize="16sp" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="Android"
+                android:textColor="#000000" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/editListContentActivity_SwitchButton_Android"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="11dp"
+                android:checked="false"
+                app:kswBackColor="@drawable/thumb_bg_color"
+                app:kswBackMeasureRatio="1.45"
+                app:kswThumbDrawable="@drawable/thumb"
+                app:kswThumbHeight="42dp"
+                app:kswThumbMarginBottom="-14dp"
+                app:kswThumbMarginLeft="-16dp"
+                app:kswThumbMarginRight="-16dp"
+                app:kswThumbMarginTop="-14dp"
+                app:kswThumbWidth="42dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="iOS"
+                android:textColor="#000000" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/editListContentActivity_SwitchButton_iOS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="11dp"
+                android:checked="false"
+                app:kswBackColor="@drawable/thumb_bg_color"
+                app:kswBackMeasureRatio="1.45"
+                app:kswThumbDrawable="@drawable/thumb"
+                app:kswThumbHeight="42dp"
+                app:kswThumbMarginBottom="-14dp"
+                app:kswThumbMarginLeft="-16dp"
+                app:kswThumbMarginRight="-16dp"
+                app:kswThumbMarginTop="-14dp"
+                app:kswThumbWidth="42dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="休息视频"
+                android:textColor="#000000" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/editListContentActivity_SwitchButton_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="11dp"
+                android:checked="false"
+                app:kswBackColor="@drawable/thumb_bg_color"
+                app:kswBackMeasureRatio="1.45"
+                app:kswThumbDrawable="@drawable/thumb"
+                app:kswThumbHeight="42dp"
+                app:kswThumbMarginBottom="-14dp"
+                app:kswThumbMarginLeft="-16dp"
+                app:kswThumbMarginRight="-16dp"
+                app:kswThumbMarginTop="-14dp"
+                app:kswThumbWidth="42dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="拓展资源"
+                android:textColor="#000000" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/editListContentActivity_SwitchButton_resource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="11dp"
+                android:checked="false"
+                app:kswBackColor="@drawable/thumb_bg_color"
+                app:kswBackMeasureRatio="1.45"
+                app:kswThumbDrawable="@drawable/thumb"
+                app:kswThumbHeight="42dp"
+                app:kswThumbMarginBottom="-14dp"
+                app:kswThumbMarginLeft="-16dp"
+                app:kswThumbMarginRight="-16dp"
+                app:kswThumbMarginTop="-14dp"
+                app:kswThumbWidth="42dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="前端"
+                android:textColor="#000000" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/editListContentActivity_SwitchButton_web"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="11dp"
+                android:checked="false"
+                app:kswBackColor="@drawable/thumb_bg_color"
+                app:kswBackMeasureRatio="1.45"
+                app:kswThumbDrawable="@drawable/thumb"
+                app:kswThumbHeight="42dp"
+                app:kswThumbMarginBottom="-14dp"
+                app:kswThumbMarginLeft="-16dp"
+                app:kswThumbMarginRight="-16dp"
+                app:kswThumbMarginTop="-14dp"
+                app:kswThumbWidth="42dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="瞎推荐"
+                android:textColor="#000000" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/editListContentActivity_SwitchButton_recommend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="11dp"
+                android:checked="false"
+                app:kswBackColor="@drawable/thumb_bg_color"
+                app:kswBackMeasureRatio="1.45"
+                app:kswThumbDrawable="@drawable/thumb"
+                app:kswThumbHeight="42dp"
+                app:kswThumbMarginBottom="-14dp"
+                app:kswThumbMarginLeft="-16dp"
+                app:kswThumbMarginRight="-16dp"
+                app:kswThumbMarginTop="-14dp"
+                app:kswThumbWidth="42dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="1dp"
+            android:background="@color/white">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="16dp"
+                android:text="App"
+                android:textColor="#000000" />
+
+            <com.kyleduo.switchbutton.SwitchButton
+                android:id="@+id/editListContentActivity_SwitchButton_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="11dp"
+                android:checked="false"
+                app:kswBackColor="@drawable/thumb_bg_color"
+                app:kswBackMeasureRatio="1.45"
+                app:kswThumbDrawable="@drawable/thumb"
+                app:kswThumbHeight="42dp"
+                app:kswThumbMarginBottom="-14dp"
+                app:kswThumbMarginLeft="-16dp"
+                app:kswThumbMarginRight="-16dp"
+                app:kswThumbMarginTop="-14dp"
+                app:kswThumbWidth="42dp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
 
 </LinearLayout>

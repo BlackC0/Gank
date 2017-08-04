@@ -16,7 +16,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import gank.hyx.com.gank.R;
+import gank.hyx.com.gank.tool.Constant;
 import gank.hyx.com.gank.ui.BaseFragment;
+import gank.hyx.com.gank.ui.edit_list_content.EditListsContentActivity;
+
+import static android.app.Activity.RESULT_OK;
 
 public class GoodsFragment extends BaseFragment implements GoodsContract.View {
 
@@ -73,12 +77,12 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
     }
 
     @Override
-    public void gotoEditGoodsLists() {
-        // TODO: 2017/8/1 跳转到页面列表项页面
-
+    public void gotoEditListsContent() {
+        Intent intent = new Intent(mActivity, EditListsContentActivity.class);
+        startActivityForResult(intent, Constant.EDIT_LISTS_CONTENT);
     }
 
-    public void setmPresenter(GoodsContract.Presenter mPresenter) {
+    public void setPresenter(GoodsContract.Presenter mPresenter) {
         this.mPresenter = mPresenter;
     }
 
@@ -87,7 +91,7 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.goodsFragment_ImageView_add:
-                mPresenter.prepareEditGoodsLists();
+                mPresenter.prepareEditListsContent();
                 break;
             case R.id.goodsFragment_FloatingActionButton:
                 mPresenter.prepareSearch();
@@ -98,7 +102,9 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // TODO: 2017/8/1 根据请求码，去调用present中的start方法，重新初始化一遍viewpager和tablayout
+        if (requestCode == Constant.EDIT_LISTS_CONTENT && resultCode == RESULT_OK){
+            mPresenter.start();
+        }
 
     }
 }

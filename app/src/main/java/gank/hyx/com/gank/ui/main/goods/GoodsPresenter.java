@@ -25,7 +25,7 @@ public class GoodsPresenter implements GoodsContract.Presenter {
     public GoodsPresenter(GoodsContract.View mView, Context context) {
         this.mView = mView;
         this.context = context;
-        this.mView.setmPresenter(this);
+        this.mView.setPresenter(this);
         this.mSharedPreferences = context.getSharedPreferences(Constant.TableName1, Context.MODE_PRIVATE);
     }
 
@@ -64,7 +64,7 @@ public class GoodsPresenter implements GoodsContract.Presenter {
     }
 
     @Override
-    public void prepareEditGoodsLists() {
-        mView.gotoEditGoodsLists();
+    public void prepareEditListsContent() {
+        mView.gotoEditListsContent();
     }
 }

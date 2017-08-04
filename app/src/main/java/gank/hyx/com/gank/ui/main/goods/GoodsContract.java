@@ -18,7 +18,7 @@ public interface GoodsContract {
 
         void gotoSearch();
 
-        void gotoEditGoodsLists();
+        void gotoEditListsContent();
 
     }
 
@@ -26,7 +26,7 @@ public interface GoodsContract {
 
         void prepareSearch();
 
-        void prepareEditGoodsLists();//编辑干货的列表项
+        void prepareEditListsContent();//编辑干货的列表项
     }
 
 }
