@@ -84,25 +84,25 @@ public class EditListsContentActivity extends BaseActivity implements EditListsC
                 mPresenter.prepareBack();
                 break;
             case R.id.editListContentActivity_SwitchButton_Android:
-                mPresenter.editListContent(1, editListContentActivity_SwitchButton_Android.isChecked());
+                mPresenter.editListContent(0, editListContentActivity_SwitchButton_Android.isChecked());
                 break;
             case R.id.editListContentActivity_SwitchButton_iOS:
-                mPresenter.editListContent(2, editListContentActivity_SwitchButton_iOS.isChecked());
+                mPresenter.editListContent(1, editListContentActivity_SwitchButton_iOS.isChecked());
                 break;
             case R.id.editListContentActivity_SwitchButton_video:
-                mPresenter.editListContent(3, editListContentActivity_SwitchButton_video.isChecked());
+                mPresenter.editListContent(2, editListContentActivity_SwitchButton_video.isChecked());
                 break;
             case R.id.editListContentActivity_SwitchButton_resource:
-                mPresenter.editListContent(4, editListContentActivity_SwitchButton_resource.isChecked());
+                mPresenter.editListContent(3, editListContentActivity_SwitchButton_resource.isChecked());
                 break;
             case R.id.editListContentActivity_SwitchButton_web:
-                mPresenter.editListContent(5, editListContentActivity_SwitchButton_web.isChecked());
+                mPresenter.editListContent(4, editListContentActivity_SwitchButton_web.isChecked());
                 break;
             case R.id.editListContentActivity_SwitchButton_recommend:
-                mPresenter.editListContent(6, editListContentActivity_SwitchButton_recommend.isChecked());
+                mPresenter.editListContent(5, editListContentActivity_SwitchButton_recommend.isChecked());
                 break;
             case R.id.editListContentActivity_SwitchButton_app:
-                mPresenter.editListContent(7, editListContentActivity_SwitchButton_app.isChecked());
+                mPresenter.editListContent(6, editListContentActivity_SwitchButton_app.isChecked());
                 break;
         }
     }

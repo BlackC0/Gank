@@ -58,13 +58,13 @@ public class EditListsContentPresenter implements EditListsContentContract.Prese
     public void prepareBack() {
         if (isChanged) {
             SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putBoolean(Constant.ListContent_sp2, edits.get(1));
-            editor.putBoolean(Constant.ListContent_sp3, edits.get(2));
-            editor.putBoolean(Constant.ListContent_sp4, edits.get(3));
-            editor.putBoolean(Constant.ListContent_sp5, edits.get(4));
-            editor.putBoolean(Constant.ListContent_sp6, edits.get(5));
-            editor.putBoolean(Constant.ListContent_sp7, edits.get(6));
-            editor.putBoolean(Constant.ListContent_sp8, edits.get(7));
+            editor.putBoolean(Constant.ListContent_sp2, edits.get(0));
+            editor.putBoolean(Constant.ListContent_sp3, edits.get(1));
+            editor.putBoolean(Constant.ListContent_sp4, edits.get(2));
+            editor.putBoolean(Constant.ListContent_sp5, edits.get(3));
+            editor.putBoolean(Constant.ListContent_sp6, edits.get(4));
+            editor.putBoolean(Constant.ListContent_sp7, edits.get(5));
+            editor.putBoolean(Constant.ListContent_sp8, edits.get(6));
             editor.commit();
         }
         mView.back(isChanged);
