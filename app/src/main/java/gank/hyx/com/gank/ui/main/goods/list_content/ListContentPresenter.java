@@ -1,5 +1,20 @@
 package gank.hyx.com.gank.ui.main.goods.list_content;
 
+import android.app.Activity;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import gank.hyx.com.gank.network.Request;
+import gank.hyx.com.gank.network.RetrofitResponseHelper;
+import gank.hyx.com.gank.network.model.CommonData;
+import gank.hyx.com.gank.tool.Constant;
+import gank.hyx.com.gank.ui.BaseActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 /**
  * Created by BlackC on 2017/7/25.
  */
@@ -7,23 +22,80 @@ package gank.hyx.com.gank.ui.main.goods.list_content;
 public class ListContentPresenter implements ListContentContract.Presenter {
 
     private final ListContentContract.View mView;
+    private final String tabName;
+    private Activity mActivity;
+    private int pager = 1;
 
-    public ListContentPresenter(ListContentContract.View mView) {
+    public ListContentPresenter(ListContentContract.View mView, Activity mActivity, String tabName) {
         this.mView = mView;
+        this.mActivity = mActivity;
+        this.tabName = tabName;
         mView.setPresenter(this);
     }
 
     @Override
     public void start() {
+        Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
+        Call<JsonObject> info = request.getCommonData(tabName, 50, pager);
+        info.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
+                if (rh.isResponseOK()) {
+                    CommonData data = new Gson().fromJson(response.body(), CommonData.class);
+                    mView.refresh(data);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(mActivity, "", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
     public void prepareRefresh() {
+        pager = 1;
+        Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
+        Call<JsonObject> info = request.getCommonData(tabName, 50, pager);
+        info.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
+                if (rh.isResponseOK()) {
+                    CommonData data = new Gson().fromJson(response.body(), CommonData.class);
+                    mView.refresh(data);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(mActivity, "网络连接出错，请稍后重试", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
     public void prepareLoadMore() {
+        pager++;
+        Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
+        Call<JsonObject> info = request.getCommonData(tabName, 50, pager);
+        info.enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
+                if (rh.isResponseOK()) {
+                    CommonData data = new Gson().fromJson(response.body(), CommonData.class);
+                    mView.loadMore(data);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                Toast.makeText(mActivity, "网络连接出错，请稍后重试", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 

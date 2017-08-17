@@ -41,7 +41,7 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragement_goods, container, false);
+        rootView = inflater.inflate(R.layout.fragment_goods, container, false);
         mActivity = getActivity();
         ButterKnife.bind(this, rootView);
         return rootView;

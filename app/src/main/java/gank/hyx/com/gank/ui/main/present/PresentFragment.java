@@ -19,7 +19,7 @@ public class PresentFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragement_present, container, false);
+        rootView = inflater.inflate(R.layout.fragment_present, container, false);
         mActivity = getActivity();
         ButterKnife.bind(this, rootView);
         return rootView;

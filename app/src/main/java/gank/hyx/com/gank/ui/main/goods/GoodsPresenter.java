@@ -1,5 +1,6 @@
 package gank.hyx.com.gank.ui.main.goods;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -17,16 +18,16 @@ import gank.hyx.com.gank.ui.main.goods.list_content.ListContentPresenter;
 public class GoodsPresenter implements GoodsContract.Presenter {
 
     private final GoodsContract.View mView;
-    private Context context;
+    private Activity mActivity;
     private SharedPreferences mSharedPreferences;
     private ArrayList<BaseFragment> fragmentLists = new ArrayList<>();
     private ArrayList<String> tabNames = new ArrayList<>();
 
-    public GoodsPresenter(GoodsContract.View mView, Context context) {
+    public GoodsPresenter(GoodsContract.View mView, Activity mActivity) {
         this.mView = mView;
-        this.context = context;
+        this.mActivity = mActivity;
         this.mView.setPresenter(this);
-        this.mSharedPreferences = context.getSharedPreferences(Constant.TableName1, Context.MODE_PRIVATE);
+        this.mSharedPreferences = mActivity.getSharedPreferences(Constant.TableName1, Context.MODE_PRIVATE);
     }
 
     @Override
@@ -49,13 +50,13 @@ public class GoodsPresenter implements GoodsContract.Presenter {
         if (mSharedPreferences.getBoolean(Constant.ListContent_sp8, false))
             tabNames.add(Constant.ListContent_sp8);
 
-        for (String tabName : tabNames) {
-            ListContentFragment fragment = ListContentFragment.newInstance(tabName);
+        for (int i = 0; i < tabNames.size(); i++) {
+            ListContentFragment fragment = ListContentFragment.newInstance(tabNames.get(i));
             fragmentLists.add(fragment);
-            new ListContentPresenter(fragment);
+            new ListContentPresenter(fragment, mActivity, tabNames.get(i));
         }
 
-        mView.initGoodsLists(tabNames,fragmentLists);
+        mView.initGoodsLists(tabNames, fragmentLists);
     }
 
     @Override

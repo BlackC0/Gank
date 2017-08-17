@@ -19,7 +19,7 @@ public class MyFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragement_my, container, false);
+        rootView = inflater.inflate(R.layout.fragment_my, container, false);
         mActivity = getActivity();
         ButterKnife.bind(this, rootView);
         return rootView;

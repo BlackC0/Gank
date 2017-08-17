@@ -40,6 +40,10 @@ public class GoodsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public String getPageTitle(int position) {
-        return tabNames.get(position);
+        if (position == 0) {
+            return "首页";
+        } else {
+            return tabNames.get(position);
+        }
     }
 }
