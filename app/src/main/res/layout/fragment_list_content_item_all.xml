@@ -40,12 +40,12 @@
 
         <com.haozhang.lib.SlantedTextView
             android:id="@+id/fragment_SlantedTextView_list_content_item_tag"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_alignParentRight="true"
             android:gravity="center"
             app:slantedBackgroundColor="#cc0000"
-            app:slantedLength="40dp"
+            app:slantedLength="30dp"
             app:slantedMode="right"
             app:slantedTextColor="@color/white"
             app:slantedTextSize="16sp" />

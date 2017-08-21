@@ -5,7 +5,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.haozhang.lib.SlantedTextView;
+
+import java.util.ArrayList;
+
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.listener.RecyclerViewListClickListener;
@@ -16,15 +23,12 @@ import gank.hyx.com.gank.tool.Constant;
  * Created by Black.C on 2016/9/13.
  */
 public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final int TYPE_ITEM = 0;
-    private static final int TYPE_FOOTER = 1;
-    private String tabName;
 
+    private String tabName;
     private LayoutInflater layoutInflater;
-    private CommonData data;
+    private ArrayList<CommonData.Data> data;
     private Activity activity;
     private RecyclerViewListClickListener mItemClickListener;
-
 
     public ListContentAdapter(Activity activity, String tabName) {
         this.activity = activity;
@@ -35,7 +39,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (Constant.ListContent_sp1.equals(tabName)){
+        if (Constant.ListContent_sp1.equals(tabName)) {
             return new HomePageViewHolder(layoutInflater.inflate(R.layout.fragment_list_content_item_all, parent, false), mItemClickListener);
         } else {
             return new NormalViewHolder(layoutInflater.inflate(R.layout.fragment_list_content_item, parent, false), mItemClickListener);
@@ -47,10 +51,23 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (holder instanceof NormalViewHolder) {
 
         }
+        if (holder instanceof HomePageViewHolder) {
+
+        }
     }
 
     public static class HomePageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        @BindView(R.id.fragment_textView_list_content_item_time)
+        TextView fragmentTextViewListContentItemTime;
+        @BindView(R.id.fragment_imageView_list_content_item_avatar)
+        ImageView fragmentImageViewListContentItemAvatar;
+        @BindView(R.id.fragment_SlantedTextView_list_content_item_tag)
+        SlantedTextView fragmentSlantedTextViewListContentItemTag;
+        @BindView(R.id.fragment_textView_list_content_item_title)
+        TextView fragmentTextViewListContentItemTitle;
+        @BindView(R.id.fragment_textView_list_content_item_author)
+        TextView fragmentTextViewListContentItemAuthor;
         private RecyclerViewListClickListener mListener;
 
         public HomePageViewHolder(View itemView, RecyclerViewListClickListener listener) {
@@ -74,6 +91,14 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public static class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        @BindView(R.id.fragment_textView_list_content_item_title)
+        TextView fragment_textView_list_content_item_title;
+        @BindView(R.id.fragment_imageView_list_content_item_avatar)
+        ImageView fragment_imageView_list_content_item_avatar;
+        @BindView(R.id.fragment_textView_list_content_item_author)
+        TextView fragment_textView_list_content_item_author;
+        @BindView(R.id.fragment_textView_list_content_item_publishAt)
+        TextView fragment_textView_list_content_item_publishAt;
         private RecyclerViewListClickListener mListener;
 
         public NormalViewHolder(View itemView, RecyclerViewListClickListener listener) {
@@ -97,7 +122,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
-        return data.getResults().size();
+        return data.size();
     }
 
     @Override
@@ -114,7 +139,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mItemClickListener = listener;
     }
 
-    public void setData(CommonData data) {
+    public void setData(ArrayList<CommonData.Data> data) {
         this.data = data;
     }
 }
