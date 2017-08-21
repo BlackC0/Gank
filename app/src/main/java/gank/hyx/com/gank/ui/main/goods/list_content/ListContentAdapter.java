@@ -26,7 +26,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private String tabName;
     private LayoutInflater layoutInflater;
-    private ArrayList<CommonData.Data> data;
+    private ArrayList<CommonData.Data> dataList;
     private Activity activity;
     private RecyclerViewListClickListener mItemClickListener;
 
@@ -48,10 +48,13 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (holder instanceof NormalViewHolder) {
+        if (holder instanceof HomePageViewHolder) {
+            HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
+            CommonData.Data data  = dataList.get(position);
 
         }
-        if (holder instanceof HomePageViewHolder) {
+        if (holder instanceof NormalViewHolder) {
+            NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
 
         }
     }
@@ -122,7 +125,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public int getItemCount() {
-        return data.size();
+        return dataList.size();
     }
 
     @Override
@@ -139,7 +142,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         this.mItemClickListener = listener;
     }
 
-    public void setData(ArrayList<CommonData.Data> data) {
-        this.data = data;
+    public void setData(ArrayList<CommonData.Data> dataList) {
+        this.dataList = dataList;
     }
 }
