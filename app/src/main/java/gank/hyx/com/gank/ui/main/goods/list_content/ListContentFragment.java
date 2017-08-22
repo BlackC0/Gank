@@ -2,6 +2,8 @@ package gank.hyx.com.gank.ui.main.goods.list_content;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,8 +33,11 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
     private Activity mActivity;
     private String tabName;
     private ListContentContract.Presenter mPresenter;
-    private CommonData data = new CommonData();
     private LinearLayoutManager mLayoutManager;
+    private CommonData data = new CommonData();
+    private ListContentAdapter adapter;
+
+
     private RefreshListenerAdapter refreshAdapter = new RefreshListenerAdapter() {
         @Override
         public void onRefresh(TwinklingRefreshLayout refreshLayout) {
@@ -77,7 +82,8 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
         mLayoutManager = new LinearLayoutManager(mActivity);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listContentFragment_RecyclerView.setLayoutManager(mLayoutManager);
-
+        adapter = new ListContentAdapter(mActivity, tabName);
+        listContentFragment_RecyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -99,16 +105,18 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
     @Override
     public void refresh(CommonData data) {
         this.data = data;
-        // TODO: 2017/8/3 将data装载到RecycleView
+        adapter.setData(data.getResults());
+        adapter.notifyDataSetChanged();
         listContentFragment_TwinklingRefreshLayout.finishRefreshing();
     }
 
     @Override
     public void loadMore(CommonData data) {
-        ArrayList<CommonData.Data> formal = this.data.getResults();
-        formal.addAll(data.getResults());
-        this.data.setResults(formal);
-        // TODO: 2017/8/3 将data装载到RecycleView
+        ArrayList<CommonData.Data> legacy = this.data.getResults();
+        legacy.addAll(data.getResults());
+        this.data.setResults(legacy);
+        adapter.setData(this.data.getResults());
+        adapter.notifyDataSetChanged();
         listContentFragment_TwinklingRefreshLayout.finishLoadmore();
     }
 

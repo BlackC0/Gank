@@ -3,8 +3,11 @@ package gank.hyx.com.gank.ui.main.goods.list_content;
 import android.app.Activity;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
 
 import gank.hyx.com.gank.network.Request;
 import gank.hyx.com.gank.network.RetrofitResponseHelper;
@@ -42,8 +45,8 @@ public class ListContentPresenter implements ListContentContract.Presenter {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
-                    CommonData data = new Gson().fromJson(response.body(), CommonData.class);
-                    mView.refresh(data);
+                    CommonData commonData = initResponseJson(response.body());
+                    mView.refresh(commonData);
                 }
             }
 
@@ -64,7 +67,7 @@ public class ListContentPresenter implements ListContentContract.Presenter {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
-                    CommonData data = new Gson().fromJson(response.body(), CommonData.class);
+                    CommonData data = initResponseJson(response.body());
                     mView.refresh(data);
                 }
             }
@@ -86,7 +89,7 @@ public class ListContentPresenter implements ListContentContract.Presenter {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
-                    CommonData data = new Gson().fromJson(response.body(), CommonData.class);
+                    CommonData data = initResponseJson(response.body());
                     mView.loadMore(data);
                 }
             }
@@ -102,5 +105,43 @@ public class ListContentPresenter implements ListContentContract.Presenter {
     @Override
     public void prepareGoodsDetail() {
         mView.gotoGoodsDetail();
+    }
+
+    //将福利排除出去
+    private CommonData initResponseJson(JsonObject responseBody) {
+        CommonData commonData = new CommonData();
+        commonData.setError(responseBody.get("error").getAsBoolean());
+        ArrayList<CommonData.Data> dataList = new ArrayList<>();
+        JsonArray jsonArray = responseBody.getAsJsonArray("results");
+        if (jsonArray.size() != 0) {
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
+                String type = jsonObject.get("type").getAsString();
+                if ("福利".equals(type)) {
+                    continue;
+                }
+                CommonData.Data data = new CommonData.Data();
+                data.set_id(jsonObject.get("_id").getAsString());
+                data.setCreatedAt(jsonObject.get("createdAt").getAsString());
+                data.setDesc(jsonObject.get("desc").getAsString());
+                ArrayList<String> images = new ArrayList<>();
+                JsonElement element = jsonObject.get("images");
+                if (element != null) {
+                    JsonArray imageArray = jsonObject.get("images").getAsJsonArray();
+                    for (int j = 0; j < imageArray.size(); j++) {
+                        images.add(imageArray.get(j).getAsString());
+                    }
+                }
+                data.setImages(images);
+                data.setPublishedAt(jsonObject.get("publishedAt").getAsString());
+                data.setSource(jsonObject.get("source").getAsString());
+                data.setType(type);
+                data.setUrl(jsonObject.get("url").getAsString());
+                data.setUsed(jsonObject.get("used").getAsBoolean());
+                data.setWho(jsonObject.get("who").getAsString());
+                dataList.add(data);
+            }
+        }
+        return commonData;
     }
 }

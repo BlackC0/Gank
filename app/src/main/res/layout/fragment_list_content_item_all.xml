@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/fragment_linearLayout_list_content_item_time"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="#dfdfdf">
@@ -30,12 +31,13 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp">
 
         <ImageView
             android:id="@+id/fragment_imageView_list_content_item_avatar"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="160dp" />
 
         <com.haozhang.lib.SlantedTextView

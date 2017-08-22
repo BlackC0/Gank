@@ -8,9 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.haozhang.lib.SlantedTextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -26,9 +31,10 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     private String tabName;
     private LayoutInflater layoutInflater;
-    private ArrayList<CommonData.Data> dataList;
+    private ArrayList<CommonData.Data> dataList = new ArrayList<>();
     private Activity activity;
     private RecyclerViewListClickListener mItemClickListener;
+    private String lastTime = "";
 
     public ListContentAdapter(Activity activity, String tabName) {
         this.activity = activity;
@@ -50,27 +56,82 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (holder instanceof HomePageViewHolder) {
             HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
-            CommonData.Data data  = dataList.get(position);
 
+            //设置类型
+            CommonData.Data data = dataList.get(position);
+            String type = data.getType();
+            homePageViewHolder.fragment_SlantedTextView_list_content_item_tag.setText(type);
+
+            //发布时间
+            String publishTime = data.getPublishedAt();
+            publishTime = publishTime.substring(0, 9);
+            if (!lastTime.equals(publishTime)) {
+                homePageViewHolder.fragment_linearLayout_list_content_item_time.setVisibility(View.VISIBLE);
+                lastTime = publishTime;
+            }
+            homePageViewHolder.fragment_textView_list_content_item_time.setText(publishTime);
+
+            //设置图片
+            homePageViewHolder.fragment_imageView_list_content_item_avatar.setVisibility(View.GONE);
+            if (data.getImages().size() != 0) {
+                homePageViewHolder.fragment_imageView_list_content_item_avatar.setVisibility(View.VISIBLE);
+                Glide.with(activity).load(data.getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(homePageViewHolder.fragment_imageView_list_content_item_avatar);
+            }
+
+            homePageViewHolder.fragment_textView_list_content_item_title.setText(data.getDesc());
+            homePageViewHolder.fragment_textView_list_content_item_author.setText(data.getWho());
         }
+
+
         if (holder instanceof NormalViewHolder) {
             NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
-
+            CommonData.Data data = dataList.get(position);
+            normalViewHolder.fragment_textView_list_content_item_title.setText(data.getDesc());
+            Glide.with(activity).load(data.getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(normalViewHolder.fragment_imageView_list_content_item_avatar);
+            normalViewHolder.fragment_textView_list_content_item_author.setText(data.getWho());
+            String publishTime = data.getPublishedAt();
+            try {
+                Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(publishTime);
+                long reduce = System.currentTimeMillis() - date.getTime();
+                Date pass = new Date(reduce);
+                if (pass.getSeconds() > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getSeconds() + "秒前");
+                }
+                if (pass.getMinutes() > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getMinutes() + "分前");
+                }
+                if (pass.getHours() > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getHours() + "小时前");
+                }
+                if (pass.getDay() > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getDay() + "天前");
+                }
+                if (pass.getMonth() > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getMonth() + "月前");
+                }
+                if (pass.getYear() > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getYear() + "年前");
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public static class HomePageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        @BindView(R.id.fragment_linearLayout_list_content_item_time)
+        TextView fragment_linearLayout_list_content_item_time;
         @BindView(R.id.fragment_textView_list_content_item_time)
-        TextView fragmentTextViewListContentItemTime;
+        TextView fragment_textView_list_content_item_time;
         @BindView(R.id.fragment_imageView_list_content_item_avatar)
-        ImageView fragmentImageViewListContentItemAvatar;
+        ImageView fragment_imageView_list_content_item_avatar;
         @BindView(R.id.fragment_SlantedTextView_list_content_item_tag)
-        SlantedTextView fragmentSlantedTextViewListContentItemTag;
+        SlantedTextView fragment_SlantedTextView_list_content_item_tag;
         @BindView(R.id.fragment_textView_list_content_item_title)
-        TextView fragmentTextViewListContentItemTitle;
+        TextView fragment_textView_list_content_item_title;
         @BindView(R.id.fragment_textView_list_content_item_author)
-        TextView fragmentTextViewListContentItemAuthor;
+        TextView fragment_textView_list_content_item_author;
         private RecyclerViewListClickListener mListener;
 
         public HomePageViewHolder(View itemView, RecyclerViewListClickListener listener) {

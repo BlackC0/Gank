@@ -30,7 +30,7 @@ public class CommonData {
         this.results = results;
     }
 
-    public class Data {
+    public static class Data {
 
         private String _id;
         private String createdAt;
