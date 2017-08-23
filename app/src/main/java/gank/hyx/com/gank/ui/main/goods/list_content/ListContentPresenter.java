@@ -138,10 +138,12 @@ public class ListContentPresenter implements ListContentContract.Presenter {
                 data.setType(type);
                 data.setUrl(jsonObject.get("url").getAsString());
                 data.setUsed(jsonObject.get("used").getAsBoolean());
-                data.setWho(jsonObject.get("who").getAsString());
+                JsonElement who = jsonObject.get("who");
+                data.setWho(who.isJsonNull() ? "" : who.getAsString());
                 dataList.add(data);
             }
         }
+        commonData.setResults(dataList);
         return commonData;
     }
 }

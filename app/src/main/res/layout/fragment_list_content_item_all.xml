@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -29,16 +29,30 @@
 
     </LinearLayout>
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="#c5c5c5" />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/fragment_imageView_list_content_item_avatar"
+        <LinearLayout
+            android:id="@+id/fragment_linearLayout_list_content_item_avatar"
             android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="160dp" />
+            android:layout_height="160dp"
+            android:background="#dedede">
+
+            <ImageView
+                android:id="@+id/fragment_imageView_list_content_item_avatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible" />
+        </LinearLayout>
+
 
         <com.haozhang.lib.SlantedTextView
             android:id="@+id/fragment_SlantedTextView_list_content_item_tag"
@@ -52,40 +66,48 @@
             app:slantedTextColor="@color/white"
             app:slantedTextSize="16sp" />
 
-        <TextView
-            android:id="@+id/fragment_textView_list_content_item_title"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fragment_imageView_list_content_item_avatar"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="16dp"
-            android:text="Stack 效果 ViewPager，很漂亮。"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:layout_below="@+id/fragment_linearLayout_list_content_item_avatar">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="13dp"
-            android:layout_height="13dp"
-            android:layout_alignStart="@+id/fragment_textView_list_content_item_title"
-            android:layout_below="@+id/fragment_textView_list_content_item_title"
-            android:layout_marginTop="22dp"
-            android:src="@mipmap/avatar" />
+            <TextView
+                android:id="@+id/fragment_textView_list_content_item_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/fragment_imageView_list_content_item_avatar"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="16dp"
+                android:layout_toLeftOf="@+id/fragment_SlantedTextView_list_content_item_tag"
+                android:text="Stack 效果 ViewPager，很漂亮。"
+                android:textColor="#000000"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/fragment_textView_list_content_item_author"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/fragment_textView_list_content_item_title"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@+id/imageView"
-            android:text="galols"
-            android:textColor="#AF8F84"
-            android:textSize="14sp" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignStart="@+id/fragment_textView_list_content_item_title"
+                android:layout_below="@+id/fragment_textView_list_content_item_title"
+                android:layout_marginBottom="11dp"
+                android:layout_marginTop="22dp"
+                android:src="@mipmap/avatar" />
+
+            <TextView
+                android:id="@+id/fragment_textView_list_content_item_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/fragment_textView_list_content_item_title"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/imageView"
+                android:text="galols"
+                android:textColor="#AF8F84"
+                android:textSize="14sp" />
+        </RelativeLayout>
 
 
     </RelativeLayout>
-
 
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -65,6 +66,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             //发布时间
             String publishTime = data.getPublishedAt();
             publishTime = publishTime.substring(0, 9);
+            homePageViewHolder.fragment_linearLayout_list_content_item_time.setVisibility(View.GONE);
             if (!lastTime.equals(publishTime)) {
                 homePageViewHolder.fragment_linearLayout_list_content_item_time.setVisibility(View.VISIBLE);
                 lastTime = publishTime;
@@ -87,7 +89,13 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
             CommonData.Data data = dataList.get(position);
             normalViewHolder.fragment_textView_list_content_item_title.setText(data.getDesc());
-            Glide.with(activity).load(data.getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(normalViewHolder.fragment_imageView_list_content_item_avatar);
+
+            normalViewHolder.fragment_imageView_list_content_item_avatar.setVisibility(View.GONE);
+            if (data.getImages().size() != 0) {
+                normalViewHolder.fragment_imageView_list_content_item_avatar.setVisibility(View.VISIBLE);
+                Glide.with(activity).load(data.getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(normalViewHolder.fragment_imageView_list_content_item_avatar);
+            }
+
             normalViewHolder.fragment_textView_list_content_item_author.setText(data.getWho());
             String publishTime = data.getPublishedAt();
             try {
@@ -121,7 +129,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     public static class HomePageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.fragment_linearLayout_list_content_item_time)
-        TextView fragment_linearLayout_list_content_item_time;
+        LinearLayout fragment_linearLayout_list_content_item_time;
         @BindView(R.id.fragment_textView_list_content_item_time)
         TextView fragment_textView_list_content_item_time;
         @BindView(R.id.fragment_imageView_list_content_item_avatar)

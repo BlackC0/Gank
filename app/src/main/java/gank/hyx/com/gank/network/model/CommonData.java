@@ -35,7 +35,7 @@ public class CommonData {
         private String _id;
         private String createdAt;
         private String desc;
-        private ArrayList<String> images;
+        private ArrayList<String> images = new ArrayList<>();
         private String publishedAt;
         private String source;
         private String type;
@@ -51,6 +51,9 @@ public class CommonData {
         }
 
         public void set_id(String _id) {
+            if (_id != null){
+
+            }
             this._id = _id;
         }
 
@@ -59,7 +62,9 @@ public class CommonData {
         }
 
         public void setCreatedAt(String createdAt) {
-            this.createdAt = createdAt;
+            if (createdAt != null){
+                this.createdAt = createdAt;
+            }
         }
 
         public String getDesc() {
@@ -67,7 +72,9 @@ public class CommonData {
         }
 
         public void setDesc(String desc) {
-            this.desc = desc;
+            if (desc != null){
+                this.desc = desc;
+            }
         }
 
         public ArrayList<String> getImages() {
@@ -75,7 +82,9 @@ public class CommonData {
         }
 
         public void setImages(ArrayList<String> images) {
-            this.images = images;
+            if (images != null){
+                this.images = images;
+            }
         }
 
         public String getPublishedAt() {
@@ -83,7 +92,9 @@ public class CommonData {
         }
 
         public void setPublishedAt(String publishedAt) {
-            this.publishedAt = publishedAt;
+            if (publishedAt != null){
+                this.publishedAt = publishedAt;
+            }
         }
 
         public String getSource() {
@@ -91,7 +102,9 @@ public class CommonData {
         }
 
         public void setSource(String source) {
-            this.source = source;
+            if (source != null){
+                this.source = source;
+            }
         }
 
         public String getType() {
@@ -99,7 +112,9 @@ public class CommonData {
         }
 
         public void setType(String type) {
-            this.type = type;
+            if (type != null){
+                this.type = type;
+            }
         }
 
         public String getUrl() {
@@ -107,7 +122,9 @@ public class CommonData {
         }
 
         public void setUrl(String url) {
-            this.url = url;
+            if (url != null){
+                this.url = url;
+            }
         }
 
         public boolean isUsed() {
@@ -115,7 +132,7 @@ public class CommonData {
         }
 
         public void setUsed(boolean used) {
-            this.used = used;
+                this.used = used;
         }
 
         public String getWho() {
@@ -123,7 +140,9 @@ public class CommonData {
         }
 
         public void setWho(String who) {
-            this.who = who;
+            if (who != null){
+                this.who = who;
+            }
         }
     }
 
