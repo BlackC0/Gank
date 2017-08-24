@@ -2,6 +2,7 @@ package gank.hyx.com.gank.ui.edit_list_content;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.kyleduo.switchbutton.SwitchButton;
@@ -105,5 +106,14 @@ public class EditListsContentActivity extends BaseActivity implements EditListsC
                 mPresenter.editListContent(6, editListContentActivity_SwitchButton_app.isChecked());
                 break;
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            mPresenter.prepareBack();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

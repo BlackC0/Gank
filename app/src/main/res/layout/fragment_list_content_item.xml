@@ -18,7 +18,9 @@
             android:layout_marginRight="12dp"
             android:layout_marginTop="11dp"
             android:layout_toLeftOf="@+id/fragment_imageView_list_content_item_avatar"
+            android:ellipsize="end"
             android:lineSpacingExtra="2dp"
+            android:maxLines="2"
             android:text="从一个大型项目中快速找到当前页面元素用到的布局文件"
             android:textColor="#242720"
             android:textSize="14sp" />
@@ -37,10 +39,11 @@
             android:id="@+id/fragment_textView_list_content_item_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/fragment_textView_list_content_item_title"
-            android:layout_below="@+id/fragment_textView_list_content_item_title"
-            android:layout_marginTop="16dp"
-            android:text="nekocode"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="5dp"
+            android:text=""
             android:textColor="#AF8F84"
             android:textSize="10sp" />
 
@@ -48,11 +51,12 @@
             android:id="@+id/fragment_textView_list_content_item_publishAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/fragment_textView_list_content_item_title"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="2dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@+id/fragment_textView_list_content_item_author"
-            android:text="· 5小时前"
+            android:text=""
             android:textColor="#AF8F84"
             android:textSize="10sp" />
 

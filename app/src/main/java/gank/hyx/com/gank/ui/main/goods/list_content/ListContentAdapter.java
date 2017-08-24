@@ -35,7 +35,6 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
     private ArrayList<CommonData.Data> dataList = new ArrayList<>();
     private Activity activity;
     private RecyclerViewListClickListener mItemClickListener;
-    private String lastTime = "";
 
     public ListContentAdapter(Activity activity, String tabName) {
         this.activity = activity;
@@ -64,24 +63,29 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             homePageViewHolder.fragment_SlantedTextView_list_content_item_tag.setText(type);
 
             //发布时间
-            String publishTime = data.getPublishedAt();
-            publishTime = publishTime.substring(0, 9);
+            String publishTime = data.getPublishedAt().substring(0, 9);
+            String lastTime = null;
             homePageViewHolder.fragment_linearLayout_list_content_item_time.setVisibility(View.GONE);
-            if (!lastTime.equals(publishTime)) {
+            if (position != 0) {
+                lastTime = dataList.get(position - 1).getPublishedAt().substring(0, 9);
+            }
+            if (lastTime == null || !lastTime.equals(publishTime)) {
                 homePageViewHolder.fragment_linearLayout_list_content_item_time.setVisibility(View.VISIBLE);
-                lastTime = publishTime;
             }
             homePageViewHolder.fragment_textView_list_content_item_time.setText(publishTime);
 
             //设置图片
-            homePageViewHolder.fragment_imageView_list_content_item_avatar.setVisibility(View.GONE);
+            homePageViewHolder.fragment_linearLayout_list_content_item_avatar.setVisibility(View.GONE);
             if (data.getImages().size() != 0) {
-                homePageViewHolder.fragment_imageView_list_content_item_avatar.setVisibility(View.VISIBLE);
+                homePageViewHolder.fragment_linearLayout_list_content_item_avatar.setVisibility(View.VISIBLE);
                 Glide.with(activity).load(data.getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(homePageViewHolder.fragment_imageView_list_content_item_avatar);
             }
 
             homePageViewHolder.fragment_textView_list_content_item_title.setText(data.getDesc());
             homePageViewHolder.fragment_textView_list_content_item_author.setText(data.getWho());
+            if ("".equals(data.getWho())) {
+                homePageViewHolder.fragment_imageView_list_content_item_author.setVisibility(View.GONE);
+            }
         }
 
 
@@ -96,29 +100,35 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 Glide.with(activity).load(data.getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(normalViewHolder.fragment_imageView_list_content_item_avatar);
             }
 
-            normalViewHolder.fragment_textView_list_content_item_author.setText(data.getWho());
+            normalViewHolder.fragment_textView_list_content_item_author.setText(data.getWho().equals("") ? data.getWho() : data.getWho() + " ·");
             String publishTime = data.getPublishedAt();
+            publishTime = publishTime.replace("Z", " UTC");
             try {
-                Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(publishTime);
-                long reduce = System.currentTimeMillis() - date.getTime();
-                Date pass = new Date(reduce);
-                if (pass.getSeconds() > 0) {
-                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getSeconds() + "秒前");
+                Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z").parse(publishTime);
+                long reduce = System.currentTimeMillis() - date.getTime() + 28800000;
+                reduce = reduce / 1000;
+                if (reduce > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(reduce + "秒前");
+                    reduce = reduce / 60;
                 }
-                if (pass.getMinutes() > 0) {
-                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getMinutes() + "分前");
+                if (reduce > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(reduce + "分前");
+                    reduce = reduce / 60;
                 }
-                if (pass.getHours() > 0) {
-                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getHours() + "小时前");
+                if (reduce > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(reduce + "小时前");
+                    reduce = reduce / 24;
                 }
-                if (pass.getDay() > 0) {
-                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getDay() + "天前");
+                if (reduce > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(reduce + "天前");
+                    reduce = reduce / 30;
                 }
-                if (pass.getMonth() > 0) {
-                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getMonth() + "月前");
+                if (reduce > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(reduce + "月前");
+                    reduce = reduce / 12;
                 }
-                if (pass.getYear() > 0) {
-                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(pass.getYear() + "年前");
+                if (reduce > 0) {
+                    normalViewHolder.fragment_textView_list_content_item_publishAt.setText(reduce + "年前");
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
@@ -132,12 +142,16 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         LinearLayout fragment_linearLayout_list_content_item_time;
         @BindView(R.id.fragment_textView_list_content_item_time)
         TextView fragment_textView_list_content_item_time;
+        @BindView(R.id.fragment_linearLayout_list_content_item_avatar)
+        LinearLayout fragment_linearLayout_list_content_item_avatar;
         @BindView(R.id.fragment_imageView_list_content_item_avatar)
         ImageView fragment_imageView_list_content_item_avatar;
         @BindView(R.id.fragment_SlantedTextView_list_content_item_tag)
         SlantedTextView fragment_SlantedTextView_list_content_item_tag;
         @BindView(R.id.fragment_textView_list_content_item_title)
         TextView fragment_textView_list_content_item_title;
+        @BindView(R.id.fragment_imageView_list_content_item_author)
+        ImageView fragment_imageView_list_content_item_author;
         @BindView(R.id.fragment_textView_list_content_item_author)
         TextView fragment_textView_list_content_item_author;
         private RecyclerViewListClickListener mListener;
