@@ -24,6 +24,7 @@ import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.listener.RecyclerViewListClickListener;
 import gank.hyx.com.gank.network.model.CommonData;
 import gank.hyx.com.gank.tool.Constant;
+import gank.hyx.com.gank.tool.DisplayUtil;
 
 /**
  * Created by Black.C on 2016/9/13.
@@ -78,7 +79,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             homePageViewHolder.fragment_linearLayout_list_content_item_avatar.setVisibility(View.GONE);
             if (data.getImages().size() != 0) {
                 homePageViewHolder.fragment_linearLayout_list_content_item_avatar.setVisibility(View.VISIBLE);
-                Glide.with(activity).load(data.getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(homePageViewHolder.fragment_imageView_list_content_item_avatar);
+                Glide.with(activity).load(data.getImages().get(0) + "?imageView/0/w/" + DisplayUtil.dip2px(activity, 160)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(homePageViewHolder.fragment_imageView_list_content_item_avatar);
             }
 
             homePageViewHolder.fragment_textView_list_content_item_title.setText(data.getDesc());
@@ -97,7 +98,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
             normalViewHolder.fragment_imageView_list_content_item_avatar.setVisibility(View.GONE);
             if (data.getImages().size() != 0) {
                 normalViewHolder.fragment_imageView_list_content_item_avatar.setVisibility(View.VISIBLE);
-                Glide.with(activity).load(data.getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(normalViewHolder.fragment_imageView_list_content_item_avatar);
+                Glide.with(activity).load(data.getImages().get(0) + "?imageView/0/w/" + DisplayUtil.dip2px(activity, 60)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(normalViewHolder.fragment_imageView_list_content_item_avatar);
             }
 
             normalViewHolder.fragment_textView_list_content_item_author.setText(data.getWho().equals("") ? data.getWho() : data.getWho() + " ·");

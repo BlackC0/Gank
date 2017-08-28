@@ -1,20 +1,12 @@
 package gank.hyx.com.gank.ui.main;
 
 import android.os.Bundle;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gank.hyx.com.gank.R;
-import gank.hyx.com.gank.network.Request;
-import gank.hyx.com.gank.network.RetrofitResponseHelper;
-import gank.hyx.com.gank.network.model.CommonData;
-import gank.hyx.com.gank.tool.Constant;
 import gank.hyx.com.gank.ui.BaseActivity;
 import gank.hyx.com.gank.ui.BaseFragment;
 import gank.hyx.com.gank.ui.main.goods.GoodsFragment;
@@ -24,9 +16,6 @@ import gank.hyx.com.gank.ui.main.present.PresentFragment;
 import gank.hyx.com.gank.view.NoScrollViewPager;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageBottomTabLayout;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends BaseActivity {
 
@@ -71,22 +60,4 @@ public class MainActivity extends BaseActivity {
         navigationController.setupWithViewPager(mainActivity_NoScrollViewPager);
     }
 
-    //测试api
-    private void test() {
-        Request request = mActivity.getRetrofit(Constant.CommonDataUrl).create(Request.class);
-        Call<JsonObject> info = request.getCommonData("all", 10, 1);
-        info.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
-                CommonData data = new Gson().fromJson(response.body(), CommonData.class);
-                data.toString();
-            }
-
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
 }
