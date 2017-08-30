@@ -52,7 +52,7 @@ public class ListContentPresenter implements ListContentContract.Presenter {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(mActivity, "", Toast.LENGTH_LONG).show();
+                Toast.makeText(mActivity, "网络连接出错，请稍后重试", Toast.LENGTH_LONG).show();
             }
         });
     }

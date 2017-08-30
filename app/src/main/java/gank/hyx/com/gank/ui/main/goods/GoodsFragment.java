@@ -1,7 +1,9 @@
 package gank.hyx.com.gank.ui.main.goods;
 
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -19,6 +21,7 @@ import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.tool.Constant;
 import gank.hyx.com.gank.ui.BaseFragment;
 import gank.hyx.com.gank.ui.edit_list_content.EditListsContentActivity;
+import gank.hyx.com.gank.ui.search.SearchActivity;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -44,13 +47,13 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
         rootView = inflater.inflate(R.layout.fragment_goods, container, false);
         mActivity = getActivity();
         ButterKnife.bind(this, rootView);
+        mPresenter.start();
         return rootView;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mPresenter.start();
     }
 
     @Override
@@ -73,7 +76,12 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
 
     @Override
     public void gotoSearch() {
-        // TODO: 2017/8/1 跳转到搜索页面
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), goodsFragment_FloatingActionButton, goodsFragment_FloatingActionButton.getTransitionName());
+            startActivity(new Intent(getActivity(), SearchActivity.class), options.toBundle());
+        } else {
+            startActivity(new Intent(getActivity(), SearchActivity.class));
+        }
     }
 
     @Override
@@ -102,7 +110,7 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == Constant.EDIT_LISTS_CONTENT && resultCode == RESULT_OK){
+        if (requestCode == Constant.EDIT_LISTS_CONTENT && resultCode == RESULT_OK) {
             mPresenter.start();
         }
 

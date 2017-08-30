@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Gank</string>
+    <string name="transition_search">transition_search</string>
+    <string name="search">搜索</string>
 </resources>
