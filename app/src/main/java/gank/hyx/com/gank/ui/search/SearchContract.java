@@ -11,9 +11,17 @@ public interface SearchContract {
 
     interface View extends BaseView<Presenter> {
 
+        void back();
+
+        void search();
+
     }
 
     interface Presenter extends BasePresenter {
+
+        void prepareBack();
+
+        void prepareSearch();
 
     }
 

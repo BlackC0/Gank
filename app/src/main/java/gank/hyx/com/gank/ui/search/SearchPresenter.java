@@ -16,4 +16,14 @@ public class SearchPresenter implements SearchContract.Presenter {
     @Override
     public void start() {
     }
+
+    @Override
+    public void prepareBack() {
+        
+    }
+
+    @Override
+    public void prepareSearch() {
+
+    }
 }

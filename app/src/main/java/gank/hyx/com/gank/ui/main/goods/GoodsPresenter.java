@@ -4,6 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+import com.lcodecore.tkrefreshlayout.footer.LoadingView;
+import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
+
 import java.util.ArrayList;
 
 import gank.hyx.com.gank.tool.Constant;
@@ -32,6 +36,8 @@ public class GoodsPresenter implements GoodsContract.Presenter {
 
     @Override
     public void start() {
+        TwinklingRefreshLayout.setDefaultHeader(SinaRefreshView.class.getName());
+        TwinklingRefreshLayout.setDefaultFooter(LoadingView.class.getName());
         tabNames.clear();
         fragmentLists.clear();
         tabNames.add(Constant.ListContent_sp1);

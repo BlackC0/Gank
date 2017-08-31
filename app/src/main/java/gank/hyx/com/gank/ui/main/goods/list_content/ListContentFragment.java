@@ -2,8 +2,6 @@ package gank.hyx.com.gank.ui.main.goods.list_content;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,8 +10,6 @@ import android.view.ViewGroup;
 
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
-import com.lcodecore.tkrefreshlayout.footer.LoadingView;
-import com.lcodecore.tkrefreshlayout.header.SinaRefreshView;
 
 import java.util.ArrayList;
 
@@ -77,8 +73,6 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
 
     private void initView() {
         listContentFragment_TwinklingRefreshLayout.setOnRefreshListener(refreshAdapter);
-        listContentFragment_TwinklingRefreshLayout.setDefaultHeader(SinaRefreshView.class.getName());
-        listContentFragment_TwinklingRefreshLayout.setDefaultFooter(LoadingView.class.getName());
         mLayoutManager = new LinearLayoutManager(mActivity);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listContentFragment_RecyclerView.setLayoutManager(mLayoutManager);
