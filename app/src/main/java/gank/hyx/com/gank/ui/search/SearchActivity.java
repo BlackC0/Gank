@@ -14,8 +14,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.ui.BaseActivity;
+import gank.hyx.com.gank.ui.search.empty.OnSelectedListener;
 
-public class SearchActivity extends BaseActivity implements SearchContract.View {
+public class SearchActivity extends BaseActivity implements SearchContract.View,OnSelectedListener {
 
     @BindView(R.id.searchActivity_editText)
     EditText searchActivity_editText;
@@ -84,6 +85,16 @@ public class SearchActivity extends BaseActivity implements SearchContract.View 
 
     @Override
     public void searchComplete() {
+
+    }
+
+    @Override
+    public void onSelected() {
+
+    }
+
+    @Override
+    public void onHistorySearch() {
 
     }
 }

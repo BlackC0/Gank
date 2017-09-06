@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/emptyFragment_textView_searchOption_1"
+    android:layout_width="67dp"
+    android:layout_height="22dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/search_option_selected_bg_selector"
+    android:gravity="center"
+    android:text="all"
+    android:textColor="@color/search_option_color_selected_selector"
+    android:textSize="12sp" />
