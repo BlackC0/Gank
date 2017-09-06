@@ -4,9 +4,11 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="toolbar_bg">#4E372D</color>
+    <color name="bg_red">#950B00</color>
     <color name="thumb_checked">#334E372D</color>
     <color name="background_color">#dedede</color>
     <color name="white">#ffffff</color>
+    <color name="transparent">#00ffffff</color>
     <color name="black">#242720</color>
     <color name="gray">#c0c0c0</color>
 </resources>

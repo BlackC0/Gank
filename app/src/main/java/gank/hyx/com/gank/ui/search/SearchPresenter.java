@@ -19,11 +19,11 @@ public class SearchPresenter implements SearchContract.Presenter {
 
     @Override
     public void prepareBack() {
-        
+        mView.back();
     }
 
     @Override
-    public void prepareSearch() {
+    public void search() {
 
     }
 }

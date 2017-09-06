@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/bg_red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="11dp"
+                android:text="搜索范围"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="5">
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_1"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_row="0"
+                android:background="@drawable/search_option_selected_bg_selector"
+                android:gravity="center"
+                android:text="all"
+                android:textColor="@color/search_option_color_selected_selector"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_2"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_option_unselect_bg_selector"
+                android:gravity="center"
+                android:text="Android"
+                android:textColor="@color/search_option_color_unselect_selector"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_3"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_option_unselect_bg_selector"
+                android:gravity="center"
+                android:text="iOS"
+                android:textColor="@color/search_option_color_unselect_selector"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_4"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_option_unselect_bg_selector"
+                android:gravity="center"
+                android:text="前端"
+                android:textColor="@color/search_option_color_unselect_selector"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_5"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_option_unselect_bg_selector"
+                android:gravity="center"
+                android:text="拓展资源"
+                android:textColor="@color/search_option_color_unselect_selector"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_6"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_option_unselect_bg_selector"
+                android:gravity="center"
+                android:text="福利"
+                android:textColor="@color/search_option_color_unselect_selector"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_7"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_option_unselect_bg_selector"
+                android:gravity="center"
+                android:text="休息视频"
+                android:textColor="@color/search_option_color_unselect_selector"
+                android:textSize="12sp" />
+
+        </GridLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="8dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical"
+                android:background="@color/bg_red" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="11dp"
+                android:text="搜索历史"
+                android:textColor="#888888"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="11dp"
+                android:layout_marginStart="11dp"
+                android:gravity="right"
+                android:text="清空"
+                android:textColor="#888888"
+                android:textSize="11sp" />
+
+
+        </LinearLayout>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="5">
+
+            <android.support.v4.widget.Space
+                android:layout_columnWeight="1"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp" />
+
+            <android.support.v4.widget.Space
+                android:layout_columnWeight="1"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp" />
+
+            <android.support.v4.widget.Space
+                android:layout_columnWeight="1"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp" />
+
+            <android.support.v4.widget.Space
+                android:layout_columnWeight="1"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp" />
+
+            <android.support.v4.widget.Space
+                android:layout_columnWeight="1"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp" />
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_1"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_option_selected_bg_selector"
+                android:gravity="center"
+                android:text="all"
+                android:textColor="@color/search_option_color_selected_selector"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/emptyFragment_textView_searchOption_1"
+                android:layout_width="0dp"
+                android:layout_height="22dp"
+                android:layout_columnWeight="1"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/search_option_selected_bg_selector"
+                android:gravity="center"
+                android:text="all"
+                android:textColor="@color/search_option_color_selected_selector"
+                android:textSize="12sp" />
+
+
+        </GridLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

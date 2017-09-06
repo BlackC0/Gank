@@ -1,6 +1,6 @@
 package gank.hyx.com.gank.ui.edit_list_content;
 
-import android.content.Context;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -31,7 +31,7 @@ public class EditListsContentActivity extends BaseActivity implements EditListsC
     SwitchButton editListContentActivity_SwitchButton_recommend;
     @BindView(R.id.editListContentActivity_SwitchButton_app)
     SwitchButton editListContentActivity_SwitchButton_app;
-    private Context mActivity;
+    private Activity mActivity;
     private EditListsContentContract.Presenter mPresenter;
     private EditListsContentContract.View mView;
     private ArrayList<SwitchButton> buttons = new ArrayList<>();

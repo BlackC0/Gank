@@ -1,9 +1,7 @@
 package gank.hyx.com.gank.ui.main.goods;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -76,12 +74,7 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
 
     @Override
     public void gotoSearch() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(getActivity(), goodsFragment_FloatingActionButton, goodsFragment_FloatingActionButton.getTransitionName());
-            startActivity(new Intent(getActivity(), SearchActivity.class), options.toBundle());
-        } else {
-            startActivity(new Intent(getActivity(), SearchActivity.class));
-        }
+        startActivity(new Intent(getActivity(), SearchActivity.class));
     }
 
     @Override

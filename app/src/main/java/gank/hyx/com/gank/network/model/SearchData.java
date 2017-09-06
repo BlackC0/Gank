@@ -39,7 +39,7 @@ public class SearchData {
         this.results = results;
     }
 
-    class Data {
+    public static class Data {
 
         private String desc;
         private String ganhuo_id;

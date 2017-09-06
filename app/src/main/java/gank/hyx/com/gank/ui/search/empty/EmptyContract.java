@@ -1,4 +1,4 @@
-package gank.hyx.com.gank.ui.search;
+package gank.hyx.com.gank.ui.search.empty;
 
 import gank.hyx.com.gank.ui.BasePresenter;
 import gank.hyx.com.gank.ui.BaseView;
@@ -7,22 +7,12 @@ import gank.hyx.com.gank.ui.BaseView;
  * Created by Black.C on 2017/7/28.
  */
 
-public interface SearchContract {
+public interface EmptyContract {
 
     interface View extends BaseView<Presenter> {
-
-        void back();
-
-        void searchComplete();
-
     }
 
     interface Presenter extends BasePresenter {
-
-        void prepareBack();
-
-        void search();
-
     }
 
 }
