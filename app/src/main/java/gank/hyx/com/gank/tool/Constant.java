@@ -23,5 +23,7 @@ public class Constant {
     public static final String ListContent_sp7 = "瞎推荐";
     public static final String ListContent_sp8 = "App";
 
+    public static final String TableName2 = "HistoryMap";
+
     public static final int EDIT_LISTS_CONTENT = 10000;
 }

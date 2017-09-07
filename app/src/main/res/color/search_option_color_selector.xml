@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--selected = true-->
+    <item android:color="@color/white" android:state_selected="true"></item>
+
+    <!--selected = false-->
+    <item android:color="@color/white" android:state_focused="true" android:state_selected="false"></item>
+    <item android:color="@color/white" android:state_pressed="true" android:state_selected="false"></item>
+    <item android:color="@color/toolbar_bg" android:state_selected="false"></item>
+
+</selector>

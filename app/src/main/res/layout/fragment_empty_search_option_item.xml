@@ -7,8 +7,10 @@
     android:layout_marginEnd="5dp"
     android:layout_marginStart="5dp"
     android:layout_marginTop="5dp"
-    android:background="@drawable/search_option_selected_bg_selector"
+    android:background="@drawable/search_option_bg_selector"
+    android:clickable="true"
     android:gravity="center"
     android:text="all"
-    android:textColor="@color/search_option_color_selected_selector"
+    android:textColor="@color/search_option_color_selector"
+    android:textIsSelectable="false"
     android:textSize="12sp" />

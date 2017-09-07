@@ -1,5 +1,7 @@
 package gank.hyx.com.gank.ui.search.empty;
 
+import java.util.ArrayList;
+
 import gank.hyx.com.gank.ui.BasePresenter;
 import gank.hyx.com.gank.ui.BaseView;
 
@@ -11,13 +13,13 @@ public interface SearchEmptyContract {
 
     interface View extends BaseView<Presenter> {
 
-        void selected(int index);
+        void initView(ArrayList<String> selectOptions, ArrayList<String> historyOptions);
 
     }
 
     interface Presenter extends BasePresenter {
 
-        void selecting(int index, String text);
+        void selecting(String text);
 
         void onHistorySearch(String text);
 

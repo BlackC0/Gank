@@ -13,10 +13,13 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import gank.hyx.com.gank.R;
+import gank.hyx.com.gank.network.model.SearchData;
 import gank.hyx.com.gank.ui.BaseActivity;
 import gank.hyx.com.gank.ui.search.empty.OnSelectedListener;
+import gank.hyx.com.gank.ui.search.empty.SearchEmptyFragment;
+import gank.hyx.com.gank.ui.search.empty.SearchEmptyPresenter;
 
-public class SearchActivity extends BaseActivity implements SearchContract.View,OnSelectedListener {
+public class SearchActivity extends BaseActivity implements SearchContract.View, OnSelectedListener {
 
     @BindView(R.id.searchActivity_editText)
     EditText searchActivity_editText;
@@ -29,6 +32,9 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private Boolean hasAddFragment = false;
+    private SearchEmptyFragment searchEmptyFragment;
+    private String searchOption;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +42,14 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         mView = this;
-        new SearchPresenter(mView);
-//        setContainer();
+        new SearchPresenter(mView, mActivity);
+        initFragment();
+        setContainer(searchEmptyFragment);
+    }
+
+    private void initFragment() {
+        searchEmptyFragment = new SearchEmptyFragment();
+        new SearchEmptyPresenter(searchEmptyFragment, mActivity, this);
     }
 
     private void setContainer(Fragment fragment) {
@@ -52,7 +64,7 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
                 hasAddFragment = true;
                 return;
             }
-            transaction.replace(R.id.searchActivity_FrameLayout_container,fragment);
+            transaction.replace(R.id.searchActivity_FrameLayout_container, fragment);
             transaction.commit();
         }
     }
@@ -69,6 +81,8 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
                 mPresenter.prepareBack();
                 break;
             case R.id.searchActivity_textView_search:
+                mPresenter.search(searchOption, searchActivity_editText.getText().toString());
+                // TODO: 2017/9/7 点了之后就是搜索，这时就应该切换fragment，且出现loading
                 break;
         }
     }
@@ -84,17 +98,20 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
     }
 
     @Override
-    public void searchComplete() {
+    public void searchComplete(SearchData searchData) {
+        // TODO: 2017/9/7 通过某种方式将数据传输到子fragment
 
     }
 
     @Override
-    public void onSelected() {
-
+    public void onSelected(String text) {
+        searchOption = text;
     }
 
     @Override
-    public void onHistorySearch() {
-
+    public void onHistorySearch(String text) {
+        String[] strings = text.split("|");
+        mPresenter.search(strings[0], strings[1]);
+        // TODO: 2017/9/7 点了之后就是搜索，这时就应该切换fragment，且出现loading
     }
 }

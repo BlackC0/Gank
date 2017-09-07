@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:background="#FAFAFA">
+
+        <TextView
+            android:id="@+id/fragment_textView_search_list_content_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="13dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="11dp"
+            android:ellipsize="end"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="2"
+            android:text="从一个大型项目中快速找到当前页面元素用到的布局文件"
+            android:textColor="#242720"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/fragment_textView_search_list_content_item_selectOption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/fragment_textView_search_list_content_item_title"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="5dp"
+            android:text="App ·"
+            android:textColor="#AF8F84"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/fragment_textView_search_list_content_item_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/fragment_textView_search_list_content_item_selectOption"
+            android:text="咕咚 ·"
+            android:textColor="#AF8F84"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/fragment_textView_search_list_content_item_publishAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="5dp"
+            android:layout_toRightOf="@+id/fragment_textView_search_list_content_item_author"
+            android:text="一年前"
+            android:textColor="#AF8F84"
+            android:textSize="10sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#dfdfdf" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

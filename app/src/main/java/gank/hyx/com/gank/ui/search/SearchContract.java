@@ -1,5 +1,6 @@
 package gank.hyx.com.gank.ui.search;
 
+import gank.hyx.com.gank.network.model.SearchData;
 import gank.hyx.com.gank.ui.BasePresenter;
 import gank.hyx.com.gank.ui.BaseView;
 
@@ -13,7 +14,7 @@ public interface SearchContract {
 
         void back();
 
-        void searchComplete();
+        void searchComplete(SearchData searchData);
 
     }
 
@@ -21,7 +22,7 @@ public interface SearchContract {
 
         void prepareBack();
 
-        void search();
+        void search(String selectOption,String searchText);
 
     }
 
