@@ -24,7 +24,6 @@ import gank.hyx.com.gank.network.model.SearchData;
 public class SearchListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
-    private String tabName;
     private LayoutInflater layoutInflater;
     private ArrayList<SearchData.Data> dataList = new ArrayList<>();
     private Activity activity;
@@ -47,15 +46,13 @@ public class SearchListContentAdapter extends RecyclerView.Adapter<RecyclerView.
             NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
             SearchData.Data data = dataList.get(position);
             normalViewHolder.fragment_textView_search_list_content_item_title.setText(data.getDesc());
-
-            normalViewHolder.fragment_textView_search_list_content_item_selectOption.setText(data.getType().equals("") ? data.getType() : data.getType() + " ·");
-
-            normalViewHolder.fragment_textView_search_list_content_item_author.setText(data.getWho().equals("") ? data.getWho() : data.getWho() + " ·");
+            normalViewHolder.fragment_textView_search_list_content_item_selectOption.setText("".equals(data.getType()) ? data.getType() : data.getType() + " ·");
+            normalViewHolder.fragment_textView_search_list_content_item_author.setText("".equals(data.getWho()) ? data.getWho() : data.getWho() + " ·");
             String publishTime = data.getPublishedAt();
             publishTime = publishTime.replace("Z", " UTC");
             try {
                 Date date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS Z").parse(publishTime);
-                long reduce = System.currentTimeMillis() - date.getTime() + 28800000;
+                long reduce = System.currentTimeMillis() - date.getTime() + 8 * 1000 * 60 * 60;
                 reduce = reduce / 1000;
                 if (reduce > 0) {
                     normalViewHolder.fragment_textView_search_list_content_item_publishAt.setText(reduce + "秒前");

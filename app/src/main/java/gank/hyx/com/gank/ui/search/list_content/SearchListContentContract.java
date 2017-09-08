@@ -12,9 +12,13 @@ public interface SearchListContentContract {
 
     interface View extends BaseView<Presenter> {
 
+        void init(SearchData data);
+
         void refresh(SearchData data);
 
         void loadMore(SearchData data);
+
+        void appearLoading();
 
     }
 
@@ -23,7 +27,6 @@ public interface SearchListContentContract {
         void prepareRefresh();
 
         void prepareLoadMore();
-
 
     }
 

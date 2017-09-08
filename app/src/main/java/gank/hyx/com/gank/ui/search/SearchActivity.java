@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -18,6 +19,9 @@ import gank.hyx.com.gank.ui.BaseActivity;
 import gank.hyx.com.gank.ui.search.empty.OnSelectedListener;
 import gank.hyx.com.gank.ui.search.empty.SearchEmptyFragment;
 import gank.hyx.com.gank.ui.search.empty.SearchEmptyPresenter;
+import gank.hyx.com.gank.ui.search.list_content.OnSearchListener;
+import gank.hyx.com.gank.ui.search.list_content.SearchListContentFragment;
+import gank.hyx.com.gank.ui.search.list_content.SearchListContentPresenter;
 
 public class SearchActivity extends BaseActivity implements SearchContract.View, OnSelectedListener {
 
@@ -27,13 +31,17 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
     Toolbar searchActivity_Toolbar;
     @BindView(R.id.searchActivity_FrameLayout_container)
     FrameLayout searchActivity_FrameLayout_container;
+    @BindView(R.id.searchActivity_textView_search)
+    TextView searchActivity_textView_search;
     private SearchContract.View mView;
     private SearchContract.Presenter mPresenter;
+    private OnSearchListener listener;
     private FragmentManager fragmentManager;
     private FragmentTransaction transaction;
     private Boolean hasAddFragment = false;
+    private String searchOption = "all";
     private SearchEmptyFragment searchEmptyFragment;
-    private String searchOption;
+    private SearchListContentFragment searchListContentFragment;
 
 
     @Override
@@ -45,25 +53,34 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
         new SearchPresenter(mView, mActivity);
         initFragment();
         setContainer(searchEmptyFragment);
+        searchListContentFragment = null;
     }
 
     private void initFragment() {
-        searchEmptyFragment = new SearchEmptyFragment();
-        new SearchEmptyPresenter(searchEmptyFragment, mActivity, this);
+        if (searchEmptyFragment == null) {
+            searchEmptyFragment = new SearchEmptyFragment();
+            new SearchEmptyPresenter(searchEmptyFragment, mActivity, this);
+        }
+        if (searchListContentFragment == null) {
+            searchListContentFragment = new SearchListContentFragment();
+            new SearchListContentPresenter(searchListContentFragment, mActivity);
+        }
+
     }
 
     private void setContainer(Fragment fragment) {
         synchronized (hasAddFragment) {
             if (!hasAddFragment) {
-                if (fragmentManager == null || transaction == null) {
+                if (fragmentManager == null) {
                     fragmentManager = getSupportFragmentManager();
-                    transaction = fragmentManager.beginTransaction();
                 }
+                transaction = fragmentManager.beginTransaction();
                 transaction.add(R.id.searchActivity_FrameLayout_container, fragment);
                 transaction.commit();
                 hasAddFragment = true;
                 return;
             }
+            transaction = fragmentManager.beginTransaction();
             transaction.replace(R.id.searchActivity_FrameLayout_container, fragment);
             transaction.commit();
         }
@@ -81,8 +98,16 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
                 mPresenter.prepareBack();
                 break;
             case R.id.searchActivity_textView_search:
-                mPresenter.search(searchOption, searchActivity_editText.getText().toString());
-                // TODO: 2017/9/7 点了之后就是搜索，这时就应该切换fragment，且出现loading
+                String text = searchActivity_editText.getText().toString();
+                mPresenter.search(searchOption, text == null || "".equals(text) ? "" : text);
+                searchActivity_editText.setEnabled(false);
+                searchActivity_textView_search.setEnabled(false);
+                searchActivity_textView_search.setTextColor(getResources().getColor(R.color.gray));
+                initFragment();
+                setContainer(searchListContentFragment);
+                searchEmptyFragment = null;
+                listener.appearLoading();
+                mActivity.keyboardForces();
                 break;
         }
     }
@@ -98,9 +123,18 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
     }
 
     @Override
-    public void searchComplete(SearchData searchData) {
-        // TODO: 2017/9/7 通过某种方式将数据传输到子fragment
+    public void searchComplete(SearchData searchData, String selectOption, String searchText) {
+        listener.onSearchComplete(searchData, selectOption, searchText);
+        searchActivity_editText.setEnabled(true);
+        searchActivity_textView_search.setEnabled(true);
+        searchActivity_textView_search.setTextColor(getResources().getColor(R.color.white));
+    }
 
+    @Override
+    public void searchFailed() {
+        initFragment();
+        setContainer(searchEmptyFragment);
+        searchListContentFragment = null;
     }
 
     @Override
@@ -110,8 +144,20 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
 
     @Override
     public void onHistorySearch(String text) {
-        String[] strings = text.split("|");
+        String[] strings = text.split("/");
         mPresenter.search(strings[0], strings[1]);
-        // TODO: 2017/9/7 点了之后就是搜索，这时就应该切换fragment，且出现loading
+        searchActivity_editText.setEnabled(false);
+        searchActivity_textView_search.setEnabled(false);
+        searchActivity_textView_search.setTextColor(getResources().getColor(R.color.gray));
+        initFragment();
+        setContainer(searchListContentFragment);
+        searchEmptyFragment = null;
+        listener.appearLoading();
+        mActivity.keyboardForces();
     }
+
+    public void setSearchCompleteListener(OnSearchListener listener) {
+        this.listener = listener;
+    }
+
 }

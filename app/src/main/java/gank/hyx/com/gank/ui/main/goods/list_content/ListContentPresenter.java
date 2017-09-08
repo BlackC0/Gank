@@ -99,7 +99,6 @@ public class ListContentPresenter implements ListContentContract.Presenter {
                 Toast.makeText(mActivity, "网络连接出错，请稍后重试", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override

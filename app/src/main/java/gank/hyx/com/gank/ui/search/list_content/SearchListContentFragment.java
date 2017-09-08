@@ -72,6 +72,8 @@ public class SearchListContentFragment extends BaseFragment implements SearchLis
         adapter = new SearchListContentAdapter(mActivity);
         searchListContentFragment_RecyclerView.setAdapter(adapter);
         searchListContentFragment_RelativeLayout_loadingBackground.setVisibility(View.VISIBLE);
+        searchListContentFragment_TwinklingRefreshLayout.setEnableRefresh(false);
+        searchListContentFragment_TwinklingRefreshLayout.setEnableLoadmore(false);
     }
 
 
@@ -88,9 +90,11 @@ public class SearchListContentFragment extends BaseFragment implements SearchLis
 
     @Override
     public void refresh(SearchData data) {
-        this.data = data;
-        adapter.setData(data.getResults());
-        adapter.notifyDataSetChanged();
+        if (data != null) {
+            this.data = data;
+            adapter.setData(data.getResults());
+            adapter.notifyDataSetChanged();
+        }
         searchListContentFragment_TwinklingRefreshLayout.finishRefreshing();
     }
 
@@ -102,5 +106,26 @@ public class SearchListContentFragment extends BaseFragment implements SearchLis
         adapter.setData(this.data.getResults());
         adapter.notifyDataSetChanged();
         searchListContentFragment_TwinklingRefreshLayout.finishLoadmore();
+    }
+
+    @Override
+    public void appearLoading() {
+        if (searchListContentFragment_RelativeLayout_loadingBackground != null) {
+            searchListContentFragment_RelativeLayout_loadingBackground.setVisibility(View.VISIBLE);
+            searchListContentFragment_TwinklingRefreshLayout.setEnableRefresh(false);
+            searchListContentFragment_TwinklingRefreshLayout.setEnableLoadmore(false);
+        }
+    }
+
+    @Override
+    public void init(SearchData data) {
+        searchListContentFragment_RelativeLayout_loadingBackground.setVisibility(View.GONE);
+        searchListContentFragment_TwinklingRefreshLayout.setEnableRefresh(true);
+        searchListContentFragment_TwinklingRefreshLayout.setEnableLoadmore(true);
+        if (data != null) {
+            this.data = data;
+            adapter.setData(data.getResults());
+            adapter.notifyDataSetChanged();
+        }
     }
 }

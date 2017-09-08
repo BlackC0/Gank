@@ -21,7 +21,6 @@ import gank.hyx.com.gank.tool.Constant;
 public class SearchEmptyPresenter implements SearchEmptyContract.Presenter {
 
     private final SearchEmptyContract.View mView;
-    private SharedPreferences listContentSP;
     private SharedPreferences historySP;
     private ArrayList<String> selectOptions = new ArrayList<>();
     private ArrayList<String> historyOptions = new ArrayList<>();
@@ -31,7 +30,6 @@ public class SearchEmptyPresenter implements SearchEmptyContract.Presenter {
         this.mView = mView;
         this.mView.setPresenter(this);
         this.listener = listener;
-        this.listContentSP = activity.getSharedPreferences(Constant.TableName1, Context.MODE_PRIVATE);
         this.historySP = activity.getSharedPreferences(Constant.TableName2, Context.MODE_PRIVATE);
     }
 

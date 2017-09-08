@@ -14,7 +14,9 @@ public interface SearchContract {
 
         void back();
 
-        void searchComplete(SearchData searchData);
+        void searchComplete(SearchData searchData, String selectOption, String searchText);
+
+        void searchFailed();
 
     }
 
@@ -22,7 +24,7 @@ public interface SearchContract {
 
         void prepareBack();
 
-        void search(String selectOption,String searchText);
+        void search(String selectOption, String searchText);
 
     }
 

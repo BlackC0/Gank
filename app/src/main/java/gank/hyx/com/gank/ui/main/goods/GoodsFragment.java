@@ -45,7 +45,9 @@ public class GoodsFragment extends BaseFragment implements GoodsContract.View {
         rootView = inflater.inflate(R.layout.fragment_goods, container, false);
         mActivity = getActivity();
         ButterKnife.bind(this, rootView);
-        mPresenter.start();
+        if (mPresenter != null) {
+            mPresenter.start();
+        }
         return rootView;
     }
 

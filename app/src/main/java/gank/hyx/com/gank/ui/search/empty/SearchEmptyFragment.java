@@ -25,8 +25,10 @@ public class SearchEmptyFragment extends BaseFragment implements SearchEmptyCont
     @BindView(R.id.searchEmptyFragment_flexboxLayout_history)
     FlexboxLayout searchEmptyFragment_flexboxLayout_history;
     private SearchEmptyContract.Presenter mPresenter;
+    private ArrayList<TextView> historyTexts = new ArrayList<>();
     private View rootView;
     private Activity mActivity;
+    private ArrayList<String> historyOptions = new ArrayList<>();
 
 
     @Override
@@ -52,6 +54,7 @@ public class SearchEmptyFragment extends BaseFragment implements SearchEmptyCont
 
     @Override
     public void initView(ArrayList<String> selectOptions, ArrayList<String> historyOptions) {
+        this.historyOptions = historyOptions;
         for (int i = 0; i < selectOptions.size(); i++) {
             if (selectOptions.get(i).equals("hasInit")) {
                 continue;
@@ -80,7 +83,8 @@ public class SearchEmptyFragment extends BaseFragment implements SearchEmptyCont
         for (int i = 0; i < historyOptions.size(); i++) {
             searchEmptyFragment_flexboxLayout_history.setFlexWrap(FlexboxLayout.FLEX_WRAP_WRAP);
             final TextView fragment_empty_search_option_item = (TextView) LayoutInflater.from(getActivity()).inflate(R.layout.fragment_empty_search_option_item, searchEmptyFragment_flexboxLayout_history, false);
-            fragment_empty_search_option_item.setText(historyOptions.get(i));
+
+            fragment_empty_search_option_item.setText(historyOptions.get(i).split("/")[1]);
             fragment_empty_search_option_item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,10 +92,12 @@ public class SearchEmptyFragment extends BaseFragment implements SearchEmptyCont
                         searchEmptyFragment_flexboxLayout_history.getChildAt(i).setSelected(false);
                     }
                     fragment_empty_search_option_item.setSelected(true);
-                    mPresenter.onHistorySearch(fragment_empty_search_option_item.getText().toString());
+                    mPresenter.onHistorySearch(SearchEmptyFragment.this.historyOptions.get(historyTexts.indexOf(fragment_empty_search_option_item)));
                 }
             });
             searchEmptyFragment_flexboxLayout_history.addView(fragment_empty_search_option_item);
+            historyTexts.add(fragment_empty_search_option_item);
+
         }
     }
 
