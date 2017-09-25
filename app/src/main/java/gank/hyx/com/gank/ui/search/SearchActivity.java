@@ -135,6 +135,10 @@ public class SearchActivity extends BaseActivity implements SearchContract.View,
         initFragment();
         setContainer(searchEmptyFragment);
         searchListContentFragment = null;
+        searchActivity_editText.setEnabled(true);
+        searchActivity_textView_search.setEnabled(true);
+        searchActivity_textView_search.setTextColor(getResources().getColor(R.color.white));
+
     }
 
     @Override

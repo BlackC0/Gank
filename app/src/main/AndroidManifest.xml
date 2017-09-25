@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".ui.edit_list_content.EditListsContentActivity" />
         <activity android:name=".ui.search.SearchActivity"></activity>
+        <activity android:name=".ui.goods_detail.GoodsDetailActivity"></activity>
     </application>
 
 </manifest>

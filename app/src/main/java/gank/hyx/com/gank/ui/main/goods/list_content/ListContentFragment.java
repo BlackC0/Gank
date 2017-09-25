@@ -1,6 +1,7 @@
 package gank.hyx.com.gank.ui.main.goods.list_content;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,13 +12,13 @@ import android.view.ViewGroup;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gank.hyx.com.gank.R;
+import gank.hyx.com.gank.listener.RecyclerViewListClickListener;
 import gank.hyx.com.gank.network.model.CommonData;
 import gank.hyx.com.gank.ui.BaseFragment;
+import gank.hyx.com.gank.ui.goods_detail.GoodsDetailActivity;
 
 public class ListContentFragment extends BaseFragment implements ListContentContract.View {
 
@@ -30,7 +31,6 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
     private String tabName;
     private ListContentContract.Presenter mPresenter;
     private LinearLayoutManager mLayoutManager;
-    private CommonData data = new CommonData();
     private ListContentAdapter adapter;
 
 
@@ -77,6 +77,12 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listContentFragment_RecyclerView.setLayoutManager(mLayoutManager);
         adapter = new ListContentAdapter(mActivity, tabName);
+        adapter.setOnItemClickListener(new RecyclerViewListClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                mPresenter.prepareGoodsDetail(position);
+            }
+        });
         listContentFragment_RecyclerView.setAdapter(adapter);
     }
 
@@ -92,13 +98,15 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
     }
 
     @Override
-    public void gotoGoodsDetail() {
+    public void gotoGoodsDetail(String url) {
+        Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+        intent.putExtra("url", url);
+        startActivity(intent);
         // TODO: 2017/8/3 跳转到GoodsDetail
     }
 
     @Override
     public void refresh(CommonData data) {
-        this.data = data;
         adapter.setData(data.getResults());
         adapter.notifyDataSetChanged();
         listContentFragment_TwinklingRefreshLayout.finishRefreshing();
@@ -106,10 +114,7 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
 
     @Override
     public void loadMore(CommonData data) {
-        ArrayList<CommonData.Data> legacy = this.data.getResults();
-        legacy.addAll(data.getResults());
-        this.data.setResults(legacy);
-        adapter.setData(this.data.getResults());
+        adapter.setData(data.getResults());
         adapter.notifyDataSetChanged();
         listContentFragment_TwinklingRefreshLayout.finishLoadmore();
     }

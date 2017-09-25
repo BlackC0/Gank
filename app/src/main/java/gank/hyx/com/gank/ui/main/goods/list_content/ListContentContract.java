@@ -12,7 +12,7 @@ public interface ListContentContract {
 
     interface View extends BaseView<Presenter> {
 
-        void gotoGoodsDetail();
+        void gotoGoodsDetail(String url);
 
         void refresh(CommonData data);
 
@@ -26,7 +26,7 @@ public interface ListContentContract {
 
         void prepareLoadMore();
 
-        void prepareGoodsDetail();
+        void prepareGoodsDetail(int position);
 
     }
 

@@ -23,6 +23,8 @@ public interface SearchEmptyContract {
 
         void onHistorySearch(String text);
 
+        void onClearHistory();
+
     }
 
 }

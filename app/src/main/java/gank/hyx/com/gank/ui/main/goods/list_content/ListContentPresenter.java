@@ -28,6 +28,7 @@ public class ListContentPresenter implements ListContentContract.Presenter {
     private final String tabName;
     private Activity mActivity;
     private int pager = 1;
+    private CommonData data;
 
     public ListContentPresenter(ListContentContract.View mView, Activity mActivity, String tabName) {
         this.mView = mView;
@@ -45,8 +46,8 @@ public class ListContentPresenter implements ListContentContract.Presenter {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
-                    CommonData commonData = initResponseJson(response.body());
-                    mView.refresh(commonData);
+                    data = initResponseJson(response.body());
+                    mView.refresh(data);
                 }
             }
 
@@ -67,7 +68,7 @@ public class ListContentPresenter implements ListContentContract.Presenter {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
-                    CommonData data = initResponseJson(response.body());
+                    data = initResponseJson(response.body());
                     mView.refresh(data);
                 }
             }
@@ -85,11 +86,15 @@ public class ListContentPresenter implements ListContentContract.Presenter {
         Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
         Call<JsonObject> info = request.getCommonData(tabName, 50, pager);
         info.enqueue(new Callback<JsonObject>() {
+
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
-                    CommonData data = initResponseJson(response.body());
+                    ArrayList<CommonData.Data> legacy = data.getResults();
+                    CommonData commonData = initResponseJson(response.body());
+                    legacy.addAll(commonData.getResults());
+                    data.setResults(legacy);
                     mView.loadMore(data);
                 }
             }
@@ -102,8 +107,8 @@ public class ListContentPresenter implements ListContentContract.Presenter {
     }
 
     @Override
-    public void prepareGoodsDetail() {
-        mView.gotoGoodsDetail();
+    public void prepareGoodsDetail(int position) {
+        mView.gotoGoodsDetail(data.getResults().get(position).getUrl());
     }
 
     //将福利排除出去

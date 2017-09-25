@@ -73,6 +73,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginEnd="11dp"
                 android:layout_marginStart="11dp"
+                android:clickable="true"
                 android:gravity="right|center_vertical"
                 android:text="清空"
                 android:textColor="#888888"

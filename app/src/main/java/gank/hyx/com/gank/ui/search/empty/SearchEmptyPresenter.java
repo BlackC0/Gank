@@ -74,4 +74,9 @@ public class SearchEmptyPresenter implements SearchEmptyContract.Presenter {
     public void onHistorySearch(String text) {
         listener.onHistorySearch(text);
     }
+
+    @Override
+    public void onClearHistory() {
+        historySP.edit().clear().commit();
+    }
 }

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.ui.BaseFragment;
 
@@ -55,6 +56,7 @@ public class SearchEmptyFragment extends BaseFragment implements SearchEmptyCont
     @Override
     public void initView(ArrayList<String> selectOptions, ArrayList<String> historyOptions) {
         this.historyOptions = historyOptions;
+
         for (int i = 0; i < selectOptions.size(); i++) {
             if (selectOptions.get(i).equals("hasInit")) {
                 continue;
@@ -101,8 +103,16 @@ public class SearchEmptyFragment extends BaseFragment implements SearchEmptyCont
         }
     }
 
+
     @Override
     public void setPresenter(SearchEmptyContract.Presenter mPresenter) {
         this.mPresenter = mPresenter;
+    }
+
+    @OnClick(R.id.searchEmptyFragment_textView_clear)
+    public void onViewClicked() {
+        searchEmptyFragment_flexboxLayout_history.removeAllViews();
+        historyTexts.clear();
+        mPresenter.onClearHistory();
     }
 }
