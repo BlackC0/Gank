@@ -98,11 +98,11 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
     }
 
     @Override
-    public void gotoGoodsDetail(String url) {
+    public void gotoGoodsDetail(String url,String imgUrl) {
         Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
         intent.putExtra("url", url);
+        intent.putExtra("imgUrl", imgUrl);
         startActivity(intent);
-        // TODO: 2017/8/3 跳转到GoodsDetail
     }
 
     @Override

@@ -108,7 +108,8 @@ public class ListContentPresenter implements ListContentContract.Presenter {
 
     @Override
     public void prepareGoodsDetail(int position) {
-        mView.gotoGoodsDetail(data.getResults().get(position).getUrl());
+        boolean haveImg = data.getResults().get(position).getImages().size() > 0;
+        mView.gotoGoodsDetail(data.getResults().get(position).getUrl(), haveImg ? data.getResults().get(position).getImages().get(0) : "");
     }
 
     //将福利排除出去

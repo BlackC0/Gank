@@ -11,12 +11,16 @@ public interface GoodsDetailContract {
 
     interface View extends BaseView<Presenter> {
 
+        void initView();
 
+        void back();
 
 
     }
 
     interface Presenter extends BasePresenter {
+
+        void prepareBack();
     }
 
 }
