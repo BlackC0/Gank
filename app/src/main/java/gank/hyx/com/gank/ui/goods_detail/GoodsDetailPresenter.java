@@ -15,5 +15,11 @@ public class GoodsDetailPresenter implements GoodsDetailContract.Presenter {
 
     @Override
     public void start() {
+        mView.initView();
+    }
+
+    @Override
+    public void prepareBack() {
+
     }
 }
