@@ -20,6 +20,6 @@ public class GoodsDetailPresenter implements GoodsDetailContract.Presenter {
 
     @Override
     public void prepareBack() {
-
+        mView.back();
     }
 }

@@ -125,6 +125,9 @@ public class ListContentPresenter implements ListContentContract.Presenter {
                 if ("福利".equals(type)) {
                     continue;
                 }
+                if ("all".equals(tabName) && ("拓展资源".equals(type) || "休息视频".equals(type))) {
+                    continue;
+                }
                 CommonData.Data data = new CommonData.Data();
                 data.set_id(jsonObject.get("_id").getAsString());
                 data.setCreatedAt(jsonObject.get("createdAt").getAsString());

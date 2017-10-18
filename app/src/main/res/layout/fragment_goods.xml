@@ -34,6 +34,7 @@
                 android:background="@color/toolbar_bg"
                 app:tabIndicatorColor="@color/white"
                 app:tabSelectedTextColor="@color/white"
+                app:tabTextAppearance="@style/MyTabLayoutTextAppearance"
                 app:tabTextColor="@color/white">
 
             </android.support.design.widget.TabLayout>
