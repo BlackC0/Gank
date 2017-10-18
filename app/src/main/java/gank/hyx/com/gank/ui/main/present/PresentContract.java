@@ -10,9 +10,23 @@ import gank.hyx.com.gank.ui.BaseView;
 public interface PresentContract {
 
     interface View extends BaseView<Presenter> {
+
+        void gotoPresentDetail(String imgUrl, String desc);
+
+        void refresh(String imgUrl);
+
+        void loadMore(String imgUrl);
+
     }
 
     interface Presenter extends BasePresenter {
+
+        void prepareRefresh();
+
+        void prepareLoadMore();
+
+        void gotoPresentDetail(int position);
+
     }
 
 }

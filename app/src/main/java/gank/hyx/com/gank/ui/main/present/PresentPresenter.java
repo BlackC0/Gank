@@ -16,4 +16,19 @@ public class PresentPresenter implements PresentContract.Presenter {
     @Override
     public void start() {
     }
+
+    @Override
+    public void prepareRefresh() {
+
+    }
+
+    @Override
+    public void prepareLoadMore() {
+
+    }
+
+    @Override
+    public void gotoPresentDetail(int position) {
+
+    }
 }
