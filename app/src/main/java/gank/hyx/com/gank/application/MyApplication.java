@@ -15,6 +15,10 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        initListContentOption();
+    }
+
+    private void initListContentOption() {
         //如第一次进入没有sp在应用里 就初始化列表项
         SharedPreferences mSharedPreferences = getSharedPreferences(Constant.TableName1, Context.MODE_PRIVATE);
         boolean hasInit = mSharedPreferences.getBoolean("hasInit", false);

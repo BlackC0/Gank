@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import gank.hyx.com.gank.ui.BaseFragment;
 import gank.hyx.com.gank.R;
 
-public class PresentFragment extends BaseFragment {
+public class PresentFragment extends BaseFragment implements PresentContract.View{
 
     private View rootView;
     private Activity mActivity;
@@ -33,4 +33,23 @@ public class PresentFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void gotoPresentDetail(String imgUrl, String desc) {
+
+    }
+
+    @Override
+    public void refresh(String imgUrl) {
+
+    }
+
+    @Override
+    public void loadMore(String imgUrl) {
+
+    }
+
+    @Override
+    public void setPresenter(PresentContract.Presenter mPresenter) {
+
+    }
 }
