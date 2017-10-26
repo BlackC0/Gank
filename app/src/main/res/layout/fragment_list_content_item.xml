@@ -10,14 +10,14 @@
         android:background="#FAFAFA">
 
         <TextView
-            android:id="@+id/fragment_textView_list_content_item_title"
+            android:id="@+id/fragment_list_content_textView_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="13dp"
             android:layout_marginRight="12dp"
             android:layout_marginTop="11dp"
-            android:layout_toLeftOf="@+id/fragment_imageView_list_content_item_avatar"
+            android:layout_toLeftOf="@+id/fragment_list_content_imageView_item_avatar"
             android:ellipsize="end"
             android:lineSpacingExtra="2dp"
             android:maxLines="2"
@@ -26,7 +26,7 @@
             android:textSize="14sp" />
 
         <ImageView
-            android:id="@+id/fragment_imageView_list_content_item_avatar"
+            android:id="@+id/fragment_list_content_imageView_item_avatar"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
@@ -36,11 +36,11 @@
             android:layout_marginTop="11dp" />
 
         <TextView
-            android:id="@+id/fragment_textView_list_content_item_author"
+            android:id="@+id/fragment_list_content_textView_item_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/fragment_textView_list_content_item_title"
+            android:layout_alignStart="@+id/fragment_list_content_textView_item_title"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="5dp"
             android:text=""
@@ -55,7 +55,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/fragment_textView_list_content_item_author"
+            android:layout_toRightOf="@+id/fragment_list_content_textView_item_author"
             android:text=""
             android:textColor="#AF8F84"
             android:textSize="10sp" />

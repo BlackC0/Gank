@@ -148,21 +148,21 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public static class HomePageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.fragment_linearLayout_list_content_item_time)
+        @BindView(R.id.fragment_list_content_linearLayout_item_time)
         LinearLayout fragment_linearLayout_list_content_item_time;
-        @BindView(R.id.fragment_textView_list_content_item_time)
+        @BindView(R.id.fragment_list_content_textView_item_time)
         TextView fragment_textView_list_content_item_time;
-        @BindView(R.id.fragment_linearLayout_list_content_item_avatar)
+        @BindView(R.id.fragment_list_content_linearLayout_item_avatar)
         LinearLayout fragment_linearLayout_list_content_item_avatar;
-        @BindView(R.id.fragment_imageView_list_content_item_avatar)
+        @BindView(R.id.fragment_list_content_imageView_item_avatar)
         ImageView fragment_imageView_list_content_item_avatar;
-        @BindView(R.id.fragment_SlantedTextView_list_content_item_tag)
+        @BindView(R.id.fragment_list_content_SlantedTextView_item_tag)
         SlantedTextView fragment_SlantedTextView_list_content_item_tag;
-        @BindView(R.id.fragment_textView_list_content_item_title)
+        @BindView(R.id.fragment_list_content_textView_item_title)
         TextView fragment_textView_list_content_item_title;
-        @BindView(R.id.fragment_imageView_list_content_item_author)
+        @BindView(R.id.fragment_list_content_imageView_item_author)
         ImageView fragment_imageView_list_content_item_author;
-        @BindView(R.id.fragment_textView_list_content_item_author)
+        @BindView(R.id.fragment_list_content_textView_item_author)
         TextView fragment_textView_list_content_item_author;
         private RecyclerViewListClickListener mListener;
 
@@ -187,11 +187,11 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     public static class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        @BindView(R.id.fragment_textView_list_content_item_title)
+        @BindView(R.id.fragment_list_content_textView_item_title)
         TextView fragment_textView_list_content_item_title;
-        @BindView(R.id.fragment_imageView_list_content_item_avatar)
+        @BindView(R.id.fragment_list_content_imageView_item_avatar)
         ImageView fragment_imageView_list_content_item_avatar;
-        @BindView(R.id.fragment_textView_list_content_item_author)
+        @BindView(R.id.fragment_list_content_textView_item_author)
         TextView fragment_textView_list_content_item_author;
         @BindView(R.id.fragment_textView_list_content_item_publishAt)
         TextView fragment_textView_list_content_item_publishAt;

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/fragment_linearLayout_list_content_item_time"
+        android:id="@+id/fragment_list_content_linearLayout_item_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -25,7 +25,7 @@
                 android:background="#cc0000" />
 
             <TextView
-                android:id="@+id/fragment_textView_list_content_item_time"
+                android:id="@+id/fragment_list_content_textView_item_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -48,7 +48,7 @@
             android:background="#f0f0f0" />
 
         <LinearLayout
-            android:id="@+id/fragment_linearLayout_list_content_item_avatar"
+            android:id="@+id/fragment_list_content_linearLayout_item_avatar"
             android:layout_width="match_parent"
             android:layout_height="160dp"
             android:layout_marginTop="8dp"
@@ -58,14 +58,14 @@
 
 
             <ImageView
-                android:id="@+id/fragment_imageView_list_content_item_avatar"
+                android:id="@+id/fragment_list_content_imageView_item_avatar"
                 android:layout_width="match_parent"
                 android:layout_height="160dp" />
         </LinearLayout>
 
 
         <com.haozhang.lib.SlantedTextView
-            android:id="@+id/fragment_SlantedTextView_list_content_item_tag"
+            android:id="@+id/fragment_list_content_SlantedTextView_item_tag"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"
@@ -80,11 +80,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:layout_below="@+id/fragment_linearLayout_list_content_item_avatar"
-            android:layout_toLeftOf="@+id/fragment_SlantedTextView_list_content_item_tag">
+            android:layout_below="@+id/fragment_list_content_linearLayout_item_avatar"
+            android:layout_toLeftOf="@+id/fragment_list_content_SlantedTextView_item_tag">
 
             <TextView
-                android:id="@+id/fragment_textView_list_content_item_title"
+                android:id="@+id/fragment_list_content_textView_item_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -97,24 +97,24 @@
                 android:textSize="14sp" />
 
             <ImageView
-                android:id="@+id/fragment_imageView_list_content_item_author"
+                android:id="@+id/fragment_list_content_imageView_item_author"
                 android:layout_width="13dp"
                 android:layout_height="13dp"
                 android:layout_alignParentBottom="true"
-                android:layout_alignStart="@+id/fragment_textView_list_content_item_title"
+                android:layout_alignStart="@+id/fragment_list_content_textView_item_title"
                 android:layout_marginBottom="11dp"
                 android:layout_marginTop="5dp"
                 android:src="@mipmap/avatar" />
 
             <TextView
-                android:id="@+id/fragment_textView_list_content_item_author"
+                android:id="@+id/fragment_list_content_textView_item_author"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_marginBottom="9dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp"
-                android:layout_toRightOf="@+id/fragment_imageView_list_content_item_author"
+                android:layout_toRightOf="@+id/fragment_list_content_imageView_item_author"
                 android:text="galols"
                 android:textColor="#AF8F84"
                 android:textSize="14sp" />

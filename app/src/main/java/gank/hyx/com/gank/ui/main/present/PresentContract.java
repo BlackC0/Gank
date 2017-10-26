@@ -1,5 +1,6 @@
 package gank.hyx.com.gank.ui.main.present;
 
+import gank.hyx.com.gank.network.model.CommonData;
 import gank.hyx.com.gank.ui.BasePresenter;
 import gank.hyx.com.gank.ui.BaseView;
 
@@ -13,9 +14,9 @@ public interface PresentContract {
 
         void gotoPresentDetail(String imgUrl, String desc);
 
-        void refresh(String imgUrl);
+        void refresh(CommonData data);
 
-        void loadMore(String imgUrl);
+        void loadMore(CommonData data);
 
     }
 
@@ -25,7 +26,7 @@ public interface PresentContract {
 
         void prepareLoadMore();
 
-        void gotoPresentDetail(int position);
+        void preparePresentDetail(int position);
 
     }
 

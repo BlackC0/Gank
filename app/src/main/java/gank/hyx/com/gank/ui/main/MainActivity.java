@@ -13,6 +13,7 @@ import gank.hyx.com.gank.ui.main.goods.GoodsFragment;
 import gank.hyx.com.gank.ui.main.goods.GoodsPresenter;
 import gank.hyx.com.gank.ui.main.my.MyFragment;
 import gank.hyx.com.gank.ui.main.present.PresentFragment;
+import gank.hyx.com.gank.ui.main.present.PresentPresenter;
 import gank.hyx.com.gank.view.NoScrollViewPager;
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageBottomTabLayout;
@@ -39,13 +40,14 @@ public class MainActivity extends BaseActivity {
 
     private void initView() {
         GoodsFragment goodsFragment = new GoodsFragment();
-        MyFragment myFragment = new MyFragment();
         PresentFragment presentFragment = new PresentFragment();
+        MyFragment myFragment = new MyFragment();
         fragmentList.add(goodsFragment);
-        fragmentList.add(myFragment);
         fragmentList.add(presentFragment);
+        fragmentList.add(myFragment);
 
         new GoodsPresenter(goodsFragment,mActivity);
+        new PresentPresenter(presentFragment,mActivity);
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), fragmentList, this);
         mainActivity_NoScrollViewPager.setNoScroll(true);

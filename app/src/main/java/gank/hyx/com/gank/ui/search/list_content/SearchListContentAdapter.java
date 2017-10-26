@@ -86,13 +86,13 @@ public class SearchListContentAdapter extends RecyclerView.Adapter<RecyclerView.
     public static class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private RecyclerViewListClickListener mListener;
-        @BindView(R.id.fragment_textView_search_list_content_item_title)
+        @BindView(R.id.fragment_search_list_content_textView_item_title)
         TextView fragment_textView_search_list_content_item_title;
-        @BindView(R.id.fragment_textView_search_list_content_item_selectOption)
+        @BindView(R.id.fragment_search_list_content_textView_item_selectOption)
         TextView fragment_textView_search_list_content_item_selectOption;
-        @BindView(R.id.fragment_textView_search_list_content_item_author)
+        @BindView(R.id.fragment_search_list_content_textView_item_author)
         TextView fragment_textView_search_list_content_item_author;
-        @BindView(R.id.fragment_textView_search_list_content_item_publishAt)
+        @BindView(R.id.fragment_search_list_content_textView_item_publishAt)
         TextView fragment_textView_search_list_content_item_publishAt;
 
         public NormalViewHolder(View itemView, RecyclerViewListClickListener listener) {

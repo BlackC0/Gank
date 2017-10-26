@@ -10,7 +10,7 @@
         android:background="#FAFAFA">
 
         <TextView
-            android:id="@+id/fragment_textView_search_list_content_item_title"
+            android:id="@+id/fragment_search_list_content_textView_item_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -25,11 +25,11 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/fragment_textView_search_list_content_item_selectOption"
+            android:id="@+id/fragment_search_list_content_textView_item_selectOption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignStart="@+id/fragment_textView_search_list_content_item_title"
+            android:layout_alignStart="@+id/fragment_search_list_content_textView_item_title"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="5dp"
             android:text="App ·"
@@ -37,27 +37,27 @@
             android:textSize="10sp" />
 
         <TextView
-            android:id="@+id/fragment_textView_search_list_content_item_author"
+            android:id="@+id/fragment_search_list_content_textView_item_author"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/fragment_textView_search_list_content_item_selectOption"
+            android:layout_toRightOf="@+id/fragment_search_list_content_textView_item_selectOption"
             android:text="咕咚 ·"
             android:textColor="#AF8F84"
             android:textSize="10sp" />
 
         <TextView
-            android:id="@+id/fragment_textView_search_list_content_item_publishAt"
+            android:id="@+id/fragment_search_list_content_textView_item_publishAt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="8dp"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="5dp"
-            android:layout_toRightOf="@+id/fragment_textView_search_list_content_item_author"
+            android:layout_toRightOf="@+id/fragment_search_list_content_textView_item_author"
             android:text="一年前"
             android:textColor="#AF8F84"
             android:textSize="10sp" />
