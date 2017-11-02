@@ -60,7 +60,15 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
     private void initView() {
         presentFragment_TwinklingRefreshLayout.setOnRefreshListener(refreshAdapter);
         mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+        mStaggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
         presentFragment_RecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
+        presentFragment_RecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                mStaggeredGridLayoutManager.invalidateSpanAssignments();
+            }
+        });
         adapter = new PresentAdapter(mActivity);
         adapter.setOnItemClickListener(new RecyclerViewListClickListener() {
             @Override

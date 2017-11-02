@@ -132,11 +132,15 @@ public class PresentPresenter implements PresentContract.Presenter {
                     }
                 }
                 data.setImages(images);
-                data.setPublishedAt(jsonObject.get("publishedAt").getAsString());
-                data.setSource(jsonObject.get("source").getAsString());
+                JsonElement publishedAt = jsonObject.get("publishedAt");
+                data.setPublishedAt(publishedAt.isJsonNull() ? "" : publishedAt.getAsString());
+                JsonElement source = jsonObject.get("source");
+                data.setSource(source.isJsonNull() ? "" : source.getAsString());
                 data.setType(type);
-                data.setUrl(jsonObject.get("url").getAsString());
-                data.setUsed(jsonObject.get("used").getAsBoolean());
+                JsonElement url = jsonObject.get("url");
+                data.setUrl(url.isJsonNull() ? "" : url.getAsString());
+                JsonElement used = jsonObject.get("used");
+                data.setUsed(url.isJsonNull() ? false : used.getAsBoolean());
                 JsonElement who = jsonObject.get("who");
                 data.setWho(who.isJsonNull() ? "" : who.getAsString());
                 dataList.add(data);
