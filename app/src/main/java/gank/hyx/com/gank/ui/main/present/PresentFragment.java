@@ -101,9 +101,10 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
     }
 
     @Override
-    public void loadMore(CommonData data) {
+    public void loadMore(CommonData data, int originalSize, int increment) {
         adapter.setData(data.getResults());
         adapter.notifyDataSetChanged();
+        adapter.notifyItemRangeInserted(originalSize, increment);
         presentFragment_TwinklingRefreshLayout.finishLoadmore();
     }
 

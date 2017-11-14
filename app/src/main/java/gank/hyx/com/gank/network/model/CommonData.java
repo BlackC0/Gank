@@ -43,6 +43,16 @@ public class CommonData {
         private boolean used;
         private String who;
 
+        public int getImageHeight_local() {
+            return imageHeight_local;
+        }
+
+        public void setImageHeight_local(int imageHeight_local) {
+            this.imageHeight_local = imageHeight_local;
+        }
+
+        private int imageHeight_local = -1;
+
         public Data() {
         }
 

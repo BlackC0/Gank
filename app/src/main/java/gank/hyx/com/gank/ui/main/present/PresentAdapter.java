@@ -1,6 +1,7 @@
 package gank.hyx.com.gank.ui.main.present;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.target.Target;
 
 import java.util.ArrayList;
 
@@ -40,14 +44,39 @@ public class PresentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof NormalViewHolder) {
             NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
             CommonData.Data data = dataList.get(position);
+            if (data.getImageHeight_local() == -1) {
+                normalViewHolder.presentFragment_ImageView_item.getLayoutParams().width = (DisplayUtil.getScreenWidth(activity) / 2);
+                normalViewHolder.presentFragment_ImageView_item.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+
+                Glide.with(activity)
+                        .load(data.getUrl() + "?imageView/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                        .into(normalViewHolder.presentFragment_ImageView_item);
+
+                Glide.with(activity)
+                        .load(data.getUrl() + "?imageView/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
+                        .asBitmap()
+                        .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
+
+                            @Override
+                            public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation) {
+                                dataList.get(position).setImageHeight_local(bitmap.getHeight());
+                            }
+
+                        });
+                return;
+            }
+
             Glide.with(activity)
                     .load(data.getUrl() + "?imageView/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
+                    .override((DisplayUtil.getScreenWidth(activity) / 2), dataList.get(position).getImageHeight_local())
                     .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(normalViewHolder.presentFragment_ImageView_item);
+
         }
     }
 

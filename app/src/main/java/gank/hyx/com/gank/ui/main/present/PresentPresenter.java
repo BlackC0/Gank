@@ -90,10 +90,11 @@ public class PresentPresenter implements PresentContract.Presenter {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
                     ArrayList<CommonData.Data> legacy = data.getResults();
+                    int originalSize = legacy.size();
                     CommonData commonData = initResponseJson(response.body());
                     legacy.addAll(commonData.getResults());
                     data.setResults(legacy);
-                    mView.loadMore(data);
+                    mView.loadMore(data,originalSize,commonData.getResults().size());
                 }
             }
 

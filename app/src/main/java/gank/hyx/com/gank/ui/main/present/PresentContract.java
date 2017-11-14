@@ -16,7 +16,7 @@ public interface PresentContract {
 
         void refresh(CommonData data);
 
-        void loadMore(CommonData data);
+        void loadMore(CommonData data, int originalSize, int increment);
 
     }
 
