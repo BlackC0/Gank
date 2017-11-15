@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.haozhang.lib.SlantedTextView;
 
 import java.text.ParseException;
@@ -81,7 +80,6 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 homePageViewHolder.fragment_linearLayout_list_content_item_avatar.setVisibility(View.VISIBLE);
                 Glide.with(activity).
                         load(data.getImages().get(0) + DisplayUtil.sizeOfImageforFullWidth(activity, 160))
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .crossFade()
                         .centerCrop()
                         .into(homePageViewHolder.fragment_imageView_list_content_item_avatar);
@@ -107,7 +105,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                         .load(data.getImages().get(0) + "?imageView/0/w/" + DisplayUtil.dip2px(activity, 60) + "/h/" + DisplayUtil.dip2px(activity, 60))
                         .crossFade()
                         .centerCrop()
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE).into(normalViewHolder.fragment_imageView_list_content_item_avatar);
+                        .into(normalViewHolder.fragment_imageView_list_content_item_avatar);
             }
 
             normalViewHolder.fragment_textView_list_content_item_author.setText(data.getWho().equals("") ? data.getWho() : data.getWho() + " ·");

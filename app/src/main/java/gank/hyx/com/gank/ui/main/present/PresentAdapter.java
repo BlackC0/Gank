@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
@@ -33,6 +32,7 @@ public class PresentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private Activity activity;
     private RecyclerViewListClickListener mItemClickListener;
 
+
     public PresentAdapter(Activity activity) {
         this.activity = activity;
         this.layoutInflater = LayoutInflater.from(activity);
@@ -46,16 +46,11 @@ public class PresentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
         if (holder instanceof NormalViewHolder) {
-            NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
+            final NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
             CommonData.Data data = dataList.get(position);
             if (data.getImageHeight_local() == -1) {
                 normalViewHolder.presentFragment_ImageView_item.getLayoutParams().width = (DisplayUtil.getScreenWidth(activity) / 2);
                 normalViewHolder.presentFragment_ImageView_item.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
-
-                Glide.with(activity)
-                        .load(data.getUrl() + "?imageView/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .into(normalViewHolder.presentFragment_ImageView_item);
 
                 Glide.with(activity)
                         .load(data.getUrl() + "?imageView/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
@@ -65,6 +60,12 @@ public class PresentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                             @Override
                             public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation) {
                                 dataList.get(position).setImageHeight_local(bitmap.getHeight());
+
+                                Glide.with(activity)
+                                        .load(dataList.get(position).getUrl() + "?imageView/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
+                                        .override((DisplayUtil.getScreenWidth(activity) / 2), dataList.get(position).getImageHeight_local())
+                                        .into(normalViewHolder.presentFragment_ImageView_item);
+
                             }
 
                         });
@@ -74,7 +75,6 @@ public class PresentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             Glide.with(activity)
                     .load(data.getUrl() + "?imageView/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
                     .override((DisplayUtil.getScreenWidth(activity) / 2), dataList.get(position).getImageHeight_local())
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .into(normalViewHolder.presentFragment_ImageView_item);
 
         }

@@ -21,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.Target;
 
 import java.util.concurrent.ExecutionException;
@@ -222,7 +221,6 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
             goodsDetailActivity_textView_title.setText(desc);
             Glide.with(mActivity)
                     .load(imgUrl + DisplayUtil.sizeOfImageforFullWidth(mActivity, 200))
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                     .crossFade()
                     .centerCrop()
                     .into(goodsDetailActivity_imageView_background);

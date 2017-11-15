@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
@@ -67,6 +68,11 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 mStaggeredGridLayoutManager.invalidateSpanAssignments();
+                if (newState != RecyclerView.SCROLL_STATE_IDLE) {
+                    Glide.with(mActivity).pauseRequests();
+                } else {
+                    Glide.with(mActivity).resumeRequests();
+                }
             }
         });
         adapter = new PresentAdapter(mActivity);
