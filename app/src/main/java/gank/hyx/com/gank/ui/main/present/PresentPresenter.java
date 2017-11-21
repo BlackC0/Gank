@@ -60,7 +60,7 @@ public class PresentPresenter implements PresentContract.Presenter {
     public void prepareRefresh() {
         pager = 1;
         Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
-        Call<JsonObject> info = request.getCommonData("福利", 50, pager);
+        Call<JsonObject> info = request.getCommonData("福利", 20, pager);
         info.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -82,19 +82,16 @@ public class PresentPresenter implements PresentContract.Presenter {
     public void prepareLoadMore() {
         pager++;
         Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
-        Call<JsonObject> info = request.getCommonData("福利", 50, pager);
+        Call<JsonObject> info = request.getCommonData("福利", 20, pager);
         info.enqueue(new Callback<JsonObject>() {
 
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
-                    ArrayList<CommonData.Data> legacy = data.getResults();
-                    int originalSize = legacy.size();
                     CommonData commonData = initResponseJson(response.body());
-                    legacy.addAll(commonData.getResults());
-                    data.setResults(legacy);
-                    mView.loadMore(data,originalSize,commonData.getResults().size());
+                    data.getResults().addAll(commonData.getResults());
+                    mView.loadMore(commonData.getResults());
                 }
             }
 
@@ -135,15 +132,24 @@ public class PresentPresenter implements PresentContract.Presenter {
                 data.setImages(images);
                 JsonElement publishedAt = jsonObject.get("publishedAt");
                 data.setPublishedAt(publishedAt.isJsonNull() ? "" : publishedAt.getAsString());
+
                 JsonElement source = jsonObject.get("source");
-                data.setSource(source.isJsonNull() ? "" : source.getAsString());
+                boolean isNull = source == null || source.isJsonNull();
+                data.setSource(isNull ? "" : source.getAsString());
+
                 data.setType(type);
                 JsonElement url = jsonObject.get("url");
-                data.setUrl(url.isJsonNull() ? "" : url.getAsString());
+                isNull = url == null || url.isJsonNull();
+                data.setUrl(isNull ? "" : url.getAsString());
+
                 JsonElement used = jsonObject.get("used");
-                data.setUsed(url.isJsonNull() ? false : used.getAsBoolean());
+                isNull = used == null || used.isJsonNull();
+                data.setUsed(isNull ? false : used.getAsBoolean());
+
                 JsonElement who = jsonObject.get("who");
-                data.setWho(who.isJsonNull() ? "" : who.getAsString());
+                isNull = who == null || who.isJsonNull();
+                data.setWho(isNull ? "" : who.getAsString());
+
                 dataList.add(data);
             }
         }

@@ -2,15 +2,17 @@ package gank.hyx.com.gank.ui.main.present;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.bumptech.glide.Glide;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +32,7 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
     private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
     private PresentContract.Presenter mPresenter;
     private PresentAdapter adapter;
+    private boolean isLoadingMore = false;
 
     private RefreshListenerAdapter refreshAdapter = new RefreshListenerAdapter() {
         @Override
@@ -39,7 +42,21 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
 
         @Override
         public void onLoadMore(TwinklingRefreshLayout refreshLayout) {
-            mPresenter.prepareLoadMore();
+            if (!isLoadingMore) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isLoadingMore = true;
+                        mPresenter.prepareLoadMore();
+                    }
+                }, 500);
+            }
+        }
+
+        @Override
+        public void onFinishLoadMore() {
+            isLoadingMore = false;
+            super.onFinishLoadMore();
         }
     };
 
@@ -68,13 +85,9 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 mStaggeredGridLayoutManager.invalidateSpanAssignments();
-                if (newState != RecyclerView.SCROLL_STATE_IDLE) {
-                    Glide.with(mActivity).pauseRequests();
-                } else {
-                    Glide.with(mActivity).resumeRequests();
-                }
             }
         });
+
         adapter = new PresentAdapter(mActivity);
         adapter.setOnItemClickListener(new RecyclerViewListClickListener() {
             @Override
@@ -101,16 +114,14 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
 
     @Override
     public void refresh(CommonData data) {
-        adapter.setData(data.getResults());
-        adapter.notifyDataSetChanged();
+        adapter.clearData();
+        adapter.addData(data.getResults());
         presentFragment_TwinklingRefreshLayout.finishRefreshing();
     }
 
     @Override
-    public void loadMore(CommonData data, int originalSize, int increment) {
-        adapter.setData(data.getResults());
-        adapter.notifyDataSetChanged();
-        adapter.notifyItemRangeInserted(originalSize, increment);
+    public void loadMore(ArrayList<CommonData.Data> dataList) {
+        adapter.addData(dataList);
         presentFragment_TwinklingRefreshLayout.finishLoadmore();
     }
 

@@ -24,10 +24,6 @@
         <activity android:name=".ui.search.SearchActivity"></activity>
         <activity android:name=".ui.goods_detail.GoodsDetailActivity"></activity>
 
-        <meta-data
-            android:name="gank.hyx.com.gank.tool.MyGlideModule"
-            android:value="GlideModule" />
-
     </application>
 
 </manifest>

@@ -1,5 +1,7 @@
 package gank.hyx.com.gank.ui.main.present;
 
+import java.util.ArrayList;
+
 import gank.hyx.com.gank.network.model.CommonData;
 import gank.hyx.com.gank.ui.BasePresenter;
 import gank.hyx.com.gank.ui.BaseView;
@@ -16,7 +18,7 @@ public interface PresentContract {
 
         void refresh(CommonData data);
 
-        void loadMore(CommonData data, int originalSize, int increment);
+        void loadMore(ArrayList<CommonData.Data> dataList);
 
     }
 
