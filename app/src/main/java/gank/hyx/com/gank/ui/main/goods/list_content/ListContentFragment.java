@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gank.hyx.com.gank.R;
@@ -76,8 +78,7 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
         mLayoutManager = new LinearLayoutManager(mActivity);
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         listContentFragment_RecyclerView.setLayoutManager(mLayoutManager);
-        adapter = new ListContentAdapter(mActivity, tabName);
-        adapter.setOnItemClickListener(new RecyclerViewListClickListener() {
+        adapter = new ListContentAdapter(mActivity, tabName, new RecyclerViewListClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 mPresenter.prepareGoodsDetail(position);
@@ -98,25 +99,24 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
     }
 
     @Override
-    public void gotoGoodsDetail(String url,String imgUrl,String desc) {
+    public void gotoGoodsDetail(String url, String imgUrl, String desc) {
         Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
         intent.putExtra("url", url);
         intent.putExtra("imgUrl", imgUrl);
-        intent.putExtra("desc",desc);
+        intent.putExtra("desc", desc);
         startActivity(intent);
     }
 
     @Override
     public void refresh(CommonData data) {
-        adapter.setData(data.getResults());
-        adapter.notifyDataSetChanged();
+        adapter.clearData();
+        adapter.addData(data.getResults());
         listContentFragment_TwinklingRefreshLayout.finishRefreshing();
     }
 
     @Override
-    public void loadMore(CommonData data) {
-        adapter.setData(data.getResults());
-        adapter.notifyDataSetChanged();
+    public void loadMore(ArrayList<CommonData.Data> dataList) {
+        adapter.addData(dataList);
         listContentFragment_TwinklingRefreshLayout.finishLoadmore();
     }
 

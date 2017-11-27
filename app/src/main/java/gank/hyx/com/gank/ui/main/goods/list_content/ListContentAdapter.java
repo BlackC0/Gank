@@ -2,6 +2,7 @@ package gank.hyx.com.gank.ui.main.goods.list_content;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,32 +30,43 @@ import gank.hyx.com.gank.tool.DisplayUtil;
 /**
  * Created by Black.C on 2016/9/13.
  */
-public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ListContentAdapter extends RecyclerView.Adapter {
 
     private String tabName;
-    private LayoutInflater layoutInflater;
     private ArrayList<CommonData.Data> dataList = new ArrayList<>();
     private Activity activity;
     private RecyclerViewListClickListener mItemClickListener;
+    private int c1 = 0;
+    private int c2 = 0;
 
-    public ListContentAdapter(Activity activity, String tabName) {
+    public ListContentAdapter(Activity activity, String tabName, RecyclerViewListClickListener mItemClickListener) {
         this.activity = activity;
         this.tabName = tabName;
-        this.layoutInflater = LayoutInflater.from(activity);
+        if (mItemClickListener != null) {
+            this.mItemClickListener = mItemClickListener;
+        }
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        c1++;
+        Log.d("hyx", "onCreateViewHolder:" + c1);
+
         if (Constant.ListContent_sp1.equals(tabName)) {
-            return new HomePageViewHolder(layoutInflater.inflate(R.layout.fragment_list_content_item_all, parent, false), mItemClickListener);
+            return new HomePageViewHolder(LayoutInflater.from(activity).inflate(R.layout.fragment_list_content_item_all, parent, false), mItemClickListener);
         } else {
-            return new NormalViewHolder(layoutInflater.inflate(R.layout.fragment_list_content_item, parent, false), mItemClickListener);
+            return new NormalViewHolder(LayoutInflater.from(activity).inflate(R.layout.fragment_list_content_item, parent, false), mItemClickListener);
         }
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+        c2++;
+        Log.d("hyx", "onBindViewHolder:" + c2);
+
+
         if (holder instanceof HomePageViewHolder) {
             HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
 
@@ -144,7 +157,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         }
     }
 
-    public static class HomePageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class HomePageViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.fragment_list_content_linearLayout_item_time)
         LinearLayout fragment_linearLayout_list_content_item_time;
@@ -183,7 +196,7 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     }
 
-    public static class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.fragment_list_content_textView_item_title)
         TextView fragment_textView_list_content_item_title;
@@ -219,21 +232,18 @@ public class ListContentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         return dataList.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
+    public void clearData() {
+        int itemCount = dataList.size();
+        dataList.clear();
+        this.notifyItemRangeRemoved(0, itemCount);
     }
 
-    /**
-     * adapter 设置按钮监听
-     *
-     * @param listener
-     */
-    public void setOnItemClickListener(RecyclerViewListClickListener listener) {
-        this.mItemClickListener = listener;
+    public void addData(List<CommonData.Data> dataList) {
+        if (dataList != null && dataList.size() > 0) {
+            int startPosition = dataList.size();
+            this.dataList.addAll(dataList);
+            this.notifyItemRangeChanged(startPosition, dataList.size());
+        }
     }
 
-    public void setData(ArrayList<CommonData.Data> dataList) {
-        this.dataList = dataList;
-    }
 }

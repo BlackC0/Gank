@@ -91,11 +91,9 @@ public class ListContentPresenter implements ListContentContract.Presenter {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
                 if (rh.isResponseOK()) {
-                    ArrayList<CommonData.Data> legacy = data.getResults();
                     CommonData commonData = initResponseJson(response.body());
-                    legacy.addAll(commonData.getResults());
-                    data.setResults(legacy);
-                    mView.loadMore(data);
+                    data.getResults().addAll(commonData.getResults());
+                    mView.loadMore(commonData.getResults());
                 }
             }
 

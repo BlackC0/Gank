@@ -31,6 +31,8 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
     private Activity mActivity;
     private PresentContract.Presenter mPresenter;
     private PresentAdapter adapter;
+
+
     private boolean isLoadingMore = false;
 
     private RefreshListenerAdapter refreshAdapter = new RefreshListenerAdapter() {
@@ -78,21 +80,13 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
         presentFragment_TwinklingRefreshLayout.setOnRefreshListener(refreshAdapter);
         StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         presentFragment_RecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
-        presentFragment_RecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-            }
-        });
-
-        adapter = new PresentAdapter(mActivity);
-        adapter.setOnItemClickListener(new RecyclerViewListClickListener() {
+        adapter = new PresentAdapter(mActivity, new RecyclerViewListClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 mPresenter.preparePresentDetail(position);
             }
         });
-        //设置item之间的间隔
+//        //设置item之间的间隔
         presentFragment_RecyclerView.setAdapter(adapter);
 
 

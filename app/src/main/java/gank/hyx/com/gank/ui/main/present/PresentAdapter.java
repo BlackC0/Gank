@@ -28,43 +28,32 @@ import gank.hyx.com.gank.tool.DisplayUtil;
 /**
  * Created by Black.C on 2016/9/13.
  */
-public class PresentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class PresentAdapter extends RecyclerView.Adapter {
 
-    private LayoutInflater layoutInflater;
     private ArrayList<CommonData.Data> dataList = new ArrayList<>();
     private Activity activity;
     private Context context;
     private RecyclerViewListClickListener mItemClickListener;
-    private final static Object lock = new Object();
-    private int vhCount = 0;
 
-
-    public PresentAdapter(Activity activity) {
+    public PresentAdapter(Activity activity, RecyclerViewListClickListener mItemClickListener) {
         this.activity = activity;
         this.context = activity;
-        this.layoutInflater = LayoutInflater.from(activity);
+        if (mItemClickListener != null) {
+            this.mItemClickListener = mItemClickListener;
+        }
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        synchronized (lock){
-//            vhCount++;
-//        }
-        return new NormalViewHolder(layoutInflater.inflate(R.layout.fragment_present_list_item, parent, false), mItemClickListener);
+
+        return new NormalViewHolder(LayoutInflater.from(activity).inflate(R.layout.fragment_present_list_item, parent, false), mItemClickListener);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         if (holder instanceof NormalViewHolder) {
             final NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
-//            synchronized (lock){
-//                if (vhCount >= 20) {
-//                    vhCount--;
-////                    normalViewHolder.setIsRecyclable(false);
-//                }
-//            }
-
             CommonData.Data data = dataList.get(position);
 
             final int imgPosition = position;
@@ -104,11 +93,11 @@ public class PresentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    public static class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class NormalViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         @BindView(R.id.presentFragment_ImageView_item)
         ImageView presentFragment_ImageView_item;
-        private RecyclerViewListClickListener mListener;
+        RecyclerViewListClickListener mListener;
 
         public NormalViewHolder(View itemView, RecyclerViewListClickListener listener) {
             super(itemView);
@@ -130,30 +119,11 @@ public class PresentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return dataList.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
-        return position;
-    }
-
-    /**
-     * adapter 设置按钮监听
-     *
-     * @param listener
-     */
-    public void setOnItemClickListener(RecyclerViewListClickListener listener) {
-        this.mItemClickListener = listener;
-    }
-
-    public void setData(ArrayList<CommonData.Data> dataList) {
-        this.dataList = dataList;
-    }
-
     public void clearData() {
         int itemCount = dataList.size();
         dataList.clear();
         this.notifyItemRangeRemoved(0, itemCount);
     }
-
 
     public void addData(List<CommonData.Data> dataList) {
         if (dataList != null && dataList.size() > 0) {
