@@ -29,7 +29,6 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
     TwinklingRefreshLayout presentFragment_TwinklingRefreshLayout;
     private View rootView;
     private Activity mActivity;
-    private StaggeredGridLayoutManager mStaggeredGridLayoutManager;
     private PresentContract.Presenter mPresenter;
     private PresentAdapter adapter;
     private boolean isLoadingMore = false;
@@ -77,14 +76,12 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
 
     private void initView() {
         presentFragment_TwinklingRefreshLayout.setOnRefreshListener(refreshAdapter);
-        mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        mStaggeredGridLayoutManager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_NONE);
+        StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         presentFragment_RecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
         presentFragment_RecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
-                mStaggeredGridLayoutManager.invalidateSpanAssignments();
             }
         });
 
