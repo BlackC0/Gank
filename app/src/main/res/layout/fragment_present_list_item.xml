@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/presentFragment_tag_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"></View>
 
     <ImageView
         android:id="@+id/presentFragment_ImageView_item"
@@ -12,4 +17,4 @@
         android:padding="2.5dp"
         android:scaleType="fitCenter" />
 
-</LinearLayout>
+</FrameLayout>

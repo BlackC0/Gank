@@ -59,7 +59,6 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
     private String url;
     private String imgUrl;
     private String desc;
-    private GoodsDetailContract.View mView;
     private GoodsDetailContract.Presenter mPresenter;
     private int pixel = 0;
     private boolean isBlack = false;
@@ -119,9 +118,8 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_detail);
         ButterKnife.bind(this);
-        mView = this;
         mActivity = this;
-        new GoodsDetailPresenter(mView);
+        new GoodsDetailPresenter(this);
     }
 
     @Override

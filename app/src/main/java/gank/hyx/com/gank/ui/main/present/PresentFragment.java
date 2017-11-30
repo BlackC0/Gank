@@ -87,10 +87,7 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
             }
         });
 //        //设置item之间的间隔
-        presentFragment_RecyclerView.setAdapter(adapter);
-
-
-    }
+        presentFragment_RecyclerView.setAdapter(adapter);}
 
     @Override
     public void onDestroyView() {

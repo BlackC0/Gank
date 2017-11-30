@@ -2,7 +2,6 @@ package gank.hyx.com.gank.ui.main.goods.list_content;
 
 import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,8 +35,6 @@ public class ListContentAdapter extends RecyclerView.Adapter {
     private ArrayList<CommonData.Data> dataList = new ArrayList<>();
     private Activity activity;
     private RecyclerViewListClickListener mItemClickListener;
-    private int c1 = 0;
-    private int c2 = 0;
 
     public ListContentAdapter(Activity activity, String tabName, RecyclerViewListClickListener mItemClickListener) {
         this.activity = activity;
@@ -50,9 +47,6 @@ public class ListContentAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        c1++;
-        Log.d("hyx", "onCreateViewHolder:" + c1);
-
         if (Constant.ListContent_sp1.equals(tabName)) {
             return new HomePageViewHolder(LayoutInflater.from(activity).inflate(R.layout.fragment_list_content_item_all, parent, false), mItemClickListener);
         } else {
@@ -62,10 +56,6 @@ public class ListContentAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-
-        c2++;
-        Log.d("hyx", "onBindViewHolder:" + c2);
-
 
         if (holder instanceof HomePageViewHolder) {
             HomePageViewHolder homePageViewHolder = (HomePageViewHolder) holder;
@@ -102,6 +92,8 @@ public class ListContentAdapter extends RecyclerView.Adapter {
             homePageViewHolder.fragment_textView_list_content_item_author.setText(data.getWho());
             if ("".equals(data.getWho())) {
                 homePageViewHolder.fragment_imageView_list_content_item_author.setVisibility(View.GONE);
+            } else {
+                homePageViewHolder.fragment_imageView_list_content_item_author.setVisibility(View.VISIBLE);
             }
         }
 

@@ -60,7 +60,7 @@ public class PresentPresenter implements PresentContract.Presenter {
     public void prepareRefresh() {
         pager = 1;
         Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
-        Call<JsonObject> info = request.getCommonData("福利", 20, pager);
+        Call<JsonObject> info = request.getCommonData("福利", 50, pager);
         info.enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
@@ -82,7 +82,7 @@ public class PresentPresenter implements PresentContract.Presenter {
     public void prepareLoadMore() {
         pager++;
         Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
-        Call<JsonObject> info = request.getCommonData("福利", 20, pager);
+        Call<JsonObject> info = request.getCommonData("福利", 50, pager);
         info.enqueue(new Callback<JsonObject>() {
 
             @Override
@@ -104,6 +104,7 @@ public class PresentPresenter implements PresentContract.Presenter {
 
     @Override
     public void preparePresentDetail(int position) {
+
 
 
     }

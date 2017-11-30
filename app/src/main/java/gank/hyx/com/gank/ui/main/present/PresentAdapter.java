@@ -2,7 +2,6 @@ package gank.hyx.com.gank.ui.main.present;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +10,9 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
-import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.Target;
+import com.bumptech.glide.request.target.GlideDrawableImageViewTarget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,42 +52,28 @@ public class PresentAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
         if (holder instanceof NormalViewHolder) {
+            final CommonData.Data data = dataList.get(position);
+            ((NormalViewHolder) holder).presentFragment_tag_view.setTag(data.getUrl());
             final NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
-            CommonData.Data data = dataList.get(position);
-
-            final int imgPosition = position;
-            if (data.getImageHeight_local() == -1) {
-                Glide.with(activity)
-                        .load(data.getUrl() + "?imageView2/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
-                        .asBitmap()
-                        .into(new SimpleTarget<Bitmap>(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL) {
-
-                            @Override
-                            public void onResourceReady(Bitmap bitmap, GlideAnimation glideAnimation) {
-                                dataList.get(imgPosition).setImageHeight_local(bitmap.getHeight());
-                                bitmap.recycle();
-
-                                Glide.with(activity)
-                                        .load(dataList.get(imgPosition).getUrl() + "?imageView2/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
-                                        .skipMemoryCache(true)
-                                        .crossFade()
-                                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                        .override((DisplayUtil.getScreenWidth(activity) / 2), dataList.get(imgPosition).getImageHeight_local())
-                                        .into(normalViewHolder.presentFragment_ImageView_item);
-
-                            }
-
-                        });
-                return;
-            }
 
             Glide.with(activity)
                     .load(data.getUrl() + "?imageView2/0/w/" + (DisplayUtil.getScreenWidth(activity) / 2))
                     .skipMemoryCache(true)
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .override((DisplayUtil.getScreenWidth(activity) / 2), dataList.get(position).getImageHeight_local())
-                    .into(normalViewHolder.presentFragment_ImageView_item);
+                    .into(new GlideDrawableImageViewTarget(normalViewHolder.presentFragment_ImageView_item) {
+                        @Override
+                        public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
+                            super.onResourceReady(resource, animation);
+                            if (normalViewHolder.presentFragment_tag_view.getTag().toString() != null
+                                    && normalViewHolder.presentFragment_tag_view.getTag().toString().equals(data.getUrl())) {
+                                getView().setImageDrawable(resource);
+                            } else {
+                                getRequest().pause();
+                            }
+                        }
+                    });
+
 
         }
     }
@@ -97,6 +82,9 @@ public class PresentAdapter extends RecyclerView.Adapter {
 
         @BindView(R.id.presentFragment_ImageView_item)
         ImageView presentFragment_ImageView_item;
+        @BindView(R.id.presentFragment_tag_view)
+        View presentFragment_tag_view;
+
         RecyclerViewListClickListener mListener;
 
         public NormalViewHolder(View itemView, RecyclerViewListClickListener listener) {
