@@ -3,6 +3,7 @@ package gank.hyx.com.gank.ui.main.present;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -77,9 +78,13 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
     }
 
     private void initView() {
+
         presentFragment_TwinklingRefreshLayout.setOnRefreshListener(refreshAdapter);
+        GridLayoutManager manager = new GridLayoutManager(mActivity,3);
+
         StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         presentFragment_RecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
+
         adapter = new PresentAdapter(mActivity, new RecyclerViewListClickListener() {
             @Override
             public void onItemClick(View view, int position) {
@@ -87,7 +92,8 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
             }
         });
 //        //设置item之间的间隔
-        presentFragment_RecyclerView.setAdapter(adapter);}
+        presentFragment_RecyclerView.setAdapter(adapter);
+    }
 
     @Override
     public void onDestroyView() {

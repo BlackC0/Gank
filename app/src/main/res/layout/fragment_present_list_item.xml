@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <View
-        android:id="@+id/presentFragment_tag_view"
+        android:id="@+id/presentFragment_view_item_tag"
         android:layout_width="0dp"
         android:layout_height="0dp"></View>
 

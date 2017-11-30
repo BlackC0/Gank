@@ -3,6 +3,7 @@ package gank.hyx.com.gank.ui.main.present;
 import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import gank.hyx.com.gank.tool.DisplayUtil;
  */
 public class PresentAdapter extends RecyclerView.Adapter {
 
+    private static final int HEADER = 0x01;
     private ArrayList<CommonData.Data> dataList = new ArrayList<>();
     private Activity activity;
     private Context context;
@@ -44,15 +46,33 @@ public class PresentAdapter extends RecyclerView.Adapter {
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == HEADER) {
+            return new HeaderViewHolder(LayoutInflater.from(activity).inflate(R.layout.fragment_present_list_header, parent, false));
+        }
 
         return new NormalViewHolder(LayoutInflater.from(activity).inflate(R.layout.fragment_present_list_item, parent, false), mItemClickListener);
     }
 
     @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return HEADER;
+        }
+        return super.getItemViewType(position);
+    }
+
+    @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if (holder instanceof HeaderViewHolder) {
+            ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+            if (position == 0) {
+                StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
+                p.setFullSpan(true);
+            }
+        }
 
         if (holder instanceof NormalViewHolder) {
-            final CommonData.Data data = dataList.get(position);
+            final CommonData.Data data = dataList.get(position - 1);
             ((NormalViewHolder) holder).presentFragment_tag_view.setTag(data.getUrl());
             final NormalViewHolder normalViewHolder = (NormalViewHolder) holder;
 
@@ -73,8 +93,14 @@ public class PresentAdapter extends RecyclerView.Adapter {
                             }
                         }
                     });
+        }
+    }
 
 
+    public class HeaderViewHolder extends RecyclerView.ViewHolder {
+
+        public HeaderViewHolder(View itemView) {
+            super(itemView);
         }
     }
 
@@ -82,7 +108,7 @@ public class PresentAdapter extends RecyclerView.Adapter {
 
         @BindView(R.id.presentFragment_ImageView_item)
         ImageView presentFragment_ImageView_item;
-        @BindView(R.id.presentFragment_tag_view)
+        @BindView(R.id.presentFragment_view_item_tag)
         View presentFragment_tag_view;
 
         RecyclerViewListClickListener mListener;
@@ -104,7 +130,7 @@ public class PresentAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return dataList.size() + 1;
     }
 
     public void clearData() {

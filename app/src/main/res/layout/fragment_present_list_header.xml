@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/toolbar_bg"
-        android:gravity="center_vertical"
-        android:paddingStart="11dp"
-        android:text="福利"
-        android:textColor="@color/white"
-        android:textSize="16sp"></TextView>
-
-</android.support.constraint.ConstraintLayout>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/presentFragment_textView_item_header"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/toolbar_bg"
+    android:gravity="center_vertical"
+    android:paddingStart="11dp"
+    android:layout_marginBottom="4dp"
+    android:text="福利"
+    android:textColor="@color/white"
+    android:textSize="16sp"></TextView>
