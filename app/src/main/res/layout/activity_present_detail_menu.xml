@@ -2,60 +2,63 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/presentFragment_LinearLayout_menu"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="50dp"
+    android:gravity="center">
 
     <LinearLayout
-        android:layout_width="match_parent"
-
-        android:layout_height="match_parent"></LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:id="@+id/presentFragment_LinearLayout_menu_send"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/menu_icon_background"
         android:gravity="center">
 
-        <LinearLayout
-            android:id="@+id/presentFragment_LinearLayout_menu_send"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/menu_icon_background"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:src="@mipmap/send" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/presentFragment_LinearLayout_menu_download"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginRight="25dp"
-            android:background="@drawable/menu_icon_background"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:src="@mipmap/download" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/presentFragment_LinearLayout_menu_more"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/menu_icon_background"
-            android:gravity="center">
-
-            <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:src="@mipmap/more" />
-        </LinearLayout>
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@mipmap/send" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/presentFragment_LinearLayout_menu_download"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/menu_icon_background"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@mipmap/download" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/presentFragment_LinearLayout_menu_more"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/menu_icon_background"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@mipmap/more" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/presentFragment_LinearLayout_menu_collection"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/menu_icon_background"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@mipmap/collection" />
+
+    </LinearLayout>
 
 </LinearLayout>

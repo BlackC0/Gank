@@ -8,7 +8,7 @@
         android:color="@color/menu_icon_background_color" />
 
     <size
-        android:width="60dp"
-        android:height="60dp" />
+        android:width="30dp"
+        android:height="30dp" />
 
 </shape>
