@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/presentFragment_LinearLayout_menu"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:gravity="center">
+    android:layout_height="50dp">
+
+    <LinearLayout
+        android:id="@+id/presentFragment_LinearLayout_menu_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送"
+            android:textSize="8sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="下载"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:textSize="8sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置为头像"
+            android:layout_marginRight="25dp"
+            android:textSize="8sp" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收藏"
+            android:textSize="8sp" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/presentFragment_LinearLayout_menu_send"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_above="@+id/presentFragment_LinearLayout_menu_description"
         android:background="@drawable/menu_icon_background"
         android:gravity="center">
 
@@ -16,6 +57,7 @@
             android:layout_width="10dp"
             android:layout_height="10dp"
             android:src="@mipmap/send" />
+
     </LinearLayout>
 
     <LinearLayout
@@ -34,7 +76,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/presentFragment_LinearLayout_menu_more"
+        android:id="@+id/presentFragment_LinearLayout_menu_avatar_setting"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:background="@drawable/menu_icon_background"
@@ -61,4 +103,4 @@
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
