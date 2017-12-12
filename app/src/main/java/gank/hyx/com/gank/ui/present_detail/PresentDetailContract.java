@@ -15,12 +15,29 @@ public interface PresentDetailContract {
 
         void back();
 
+        void send();
+
+        void avatarSetting();
+
+        void download();
+
+        void collection();
+
 
     }
 
     interface Presenter extends BasePresenter {
 
         void prepareBack();
+
+        void prepareSend();
+
+        void prepareAvatarSetting();
+
+        void prepareDownload();
+
+        void prepareCollection();
+
     }
 
 }

@@ -22,4 +22,24 @@ public class PresentDetailPresenter implements PresentDetailContract.Presenter {
     public void prepareBack() {
         mView.back();
     }
+
+    @Override
+    public void prepareSend() {
+        mView.send();
+    }
+
+    @Override
+    public void prepareAvatarSetting() {
+        mView.avatarSetting();
+    }
+
+    @Override
+    public void prepareDownload() {
+        mView.download();
+    }
+
+    @Override
+    public void prepareCollection() {
+        mView.collection();
+    }
 }

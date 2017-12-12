@@ -1,6 +1,7 @@
 package gank.hyx.com.gank.ui.main.present;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,6 +22,7 @@ import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.listener.RecyclerViewListClickListener;
 import gank.hyx.com.gank.network.model.CommonData;
 import gank.hyx.com.gank.ui.BaseFragment;
+import gank.hyx.com.gank.ui.present_detail.PresentDetailActivity;
 
 public class PresentFragment extends BaseFragment implements PresentContract.View {
 
@@ -80,7 +82,7 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
     private void initView() {
 
         presentFragment_TwinklingRefreshLayout.setOnRefreshListener(refreshAdapter);
-        GridLayoutManager manager = new GridLayoutManager(mActivity,3);
+        GridLayoutManager manager = new GridLayoutManager(mActivity, 3);
 
         StaggeredGridLayoutManager mStaggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         presentFragment_RecyclerView.setLayoutManager(mStaggeredGridLayoutManager);
@@ -93,6 +95,7 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
         });
 //        //设置item之间的间隔
         presentFragment_RecyclerView.setAdapter(adapter);
+
     }
 
     @Override
@@ -103,7 +106,10 @@ public class PresentFragment extends BaseFragment implements PresentContract.Vie
 
     @Override
     public void gotoPresentDetail(String imgUrl, String desc) {
-
+        Intent intent = new Intent(mActivity, PresentDetailActivity.class);
+        intent.putExtra("imgUrl", imgUrl);
+        intent.putExtra("desc", desc);
+        startActivity(intent);
     }
 
     @Override

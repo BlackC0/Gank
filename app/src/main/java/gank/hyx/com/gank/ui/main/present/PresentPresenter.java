@@ -104,9 +104,8 @@ public class PresentPresenter implements PresentContract.Presenter {
 
     @Override
     public void preparePresentDetail(int position) {
-
-
-
+        CommonData.Data img = data.getResults().get(position-1);
+        mView.gotoPresentDetail(img.getUrl(), img.getDesc());
     }
 
     private CommonData initResponseJson(JsonObject responseBody) {
