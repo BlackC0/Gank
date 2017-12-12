@@ -217,7 +217,7 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
 
         menuPopWindows = new MyPopupWindows(menuPop, mActivity, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         menuPopWindows.setBackgroundDrawable(new BitmapDrawable());
-        headerPopWindows.setAnimationStyle(R.style.menuPopupAnimation);
+        menuPopWindows.setAnimationStyle(R.style.menuPopupAnimation);
         menuPopWindows.setOutsideTouchable(false);
         menuPopWindows.setTouchable(true);
         menuPopWindows.setFocusable(true);
