@@ -31,7 +31,7 @@ public class MyPopupWindows extends PopupWindow {
     @Override
     public void showAtLocation(View parent, int gravity, int x, int y) {
         WindowManager.LayoutParams lp = activity.getWindow().getAttributes();
-        lp.alpha = 0.8f; // 0.0-1.0
+        lp.alpha = 1f; // 0.0-1.0
         activity.getWindow().setAttributes(lp);
         super.showAtLocation(parent, gravity, x, y);
     }

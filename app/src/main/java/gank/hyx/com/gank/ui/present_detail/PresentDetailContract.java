@@ -15,14 +15,13 @@ public interface PresentDetailContract {
 
         void back();
 
-        void send();
+        void send(String path);
 
         void avatarSetting();
 
-        void download();
+        void download(String path);
 
-        void collection();
-
+        void collection(boolean state);
 
     }
 
@@ -30,13 +29,13 @@ public interface PresentDetailContract {
 
         void prepareBack();
 
-        void prepareSend();
+        void prepareSend(String imgUrl);
 
-        void prepareAvatarSetting();
+        void prepareAvatarSetting(String imgUrl);
 
-        void prepareDownload();
+        void prepareDownload(String desc, String imgUrl);
 
-        void prepareCollection();
+        void prepareCollection(String desc, String imgUrl);
 
     }
 

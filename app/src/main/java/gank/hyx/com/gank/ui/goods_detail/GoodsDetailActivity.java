@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -28,6 +31,7 @@ import java.util.concurrent.ExecutionException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import flyn.Eyes;
 import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.tool.DisplayUtil;
 import gank.hyx.com.gank.ui.BaseActivity;
@@ -50,6 +54,10 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
     TextView goodsDetailActivity_textView_title;
     @BindView(R.id.goodsDetailActivity_appBarLayout)
     AppBarLayout goodsDetailActivity_appBarLayout;
+    @BindView(R.id.goodsDetailActivity_collapsingToolbarLayout)
+    CollapsingToolbarLayout goodsDetailActivity_collapsingToolbarLayout;
+    @BindView(R.id.goodsDetailActivity_toolbar_back)
+    Toolbar goodsDetailActivity_toolbar_back;
     @BindView(R.id.goodsDetailActivity_imageView_back_2)
     ImageView goodsDetailActivity_imageView_back_2;
     @BindView(R.id.goodsDetailActivity_textView_title_2)
@@ -153,6 +161,7 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
             goodsDetailActivity_linearLayout_no_Image.setVisibility(View.VISIBLE);
             goodsDetailActivity_appBarLayout.setVisibility(View.GONE);
             goodsDetailActivity_WebView.setVisibility(View.GONE);
+            Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.toolbar_bg));
             WebSettings webSettings = goodsDetailActivity_WebView_2.getSettings();
             webSettings.setUseWideViewPort(true);
             webSettings.setJavaScriptEnabled(true);
@@ -187,6 +196,7 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
             goodsDetailActivity_linearLayout_no_Image.setVisibility(View.GONE);
             goodsDetailActivity_appBarLayout.setVisibility(View.VISIBLE);
             goodsDetailActivity_WebView.setVisibility(View.VISIBLE);
+            Eyes.setStatusBarColorForCollapsingToolbar(this, goodsDetailActivity_appBarLayout, goodsDetailActivity_collapsingToolbarLayout, goodsDetailActivity_toolbar_back, ContextCompat.getColor(this, R.color.toolbar_bg));
             WebSettings webSettings = goodsDetailActivity_WebView.getSettings();
             webSettings.setUseWideViewPort(true);
             webSettings.setJavaScriptEnabled(true);

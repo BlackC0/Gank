@@ -13,7 +13,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="65dp" />
 
         <ImageView
             android:id="@+id/presentDetailActivity_ImageView_item"
@@ -28,7 +28,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="65dp" />
 
     </LinearLayout>
 

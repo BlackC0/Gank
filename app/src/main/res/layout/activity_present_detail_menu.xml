@@ -2,112 +2,119 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/presentDetailActivity_linearLayout_menu"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:layout_below="@+id/presentDetailActivity_linearLayout_item"
+    android:layout_height="wrap_content"
     android:adjustViewBounds="true"
-    android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/presentDetailActivity_linearLayout_menu_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_gravity="center"
-            android:background="@drawable/menu_icon_background"
-            android:scaleType="center"
-            android:src="@mipmap/send" />
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/presentDetailActivity_linearLayout_menu_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2dp"
-            android:text="发送"
-            android:textColor="@color/white"
-            android:textSize="8sp" />
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center"
+                android:background="@drawable/menu_icon_background"
+                android:scaleType="center"
+                android:src="@mipmap/send" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="发送"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/presentDetailActivity_linearLayout_menu_avatar_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/menu_icon_background"
+                android:scaleType="center"
+                android:src="@mipmap/avatar_setting" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="设为头像"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/presentDetailActivity_linearLayout_menu_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="25dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/menu_icon_background"
+                android:scaleType="center"
+                android:src="@mipmap/download" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="下载"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/presentDetailActivity_linearLayout_menu_collection"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/menu_icon_background"
+                android:scaleType="center"
+                android:src="@mipmap/collection" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="2dp"
+                android:text="收藏"
+                android:textColor="@color/white"
+                android:textSize="8sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/presentDetailActivity_linearLayout_menu_avatar_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:background="@drawable/menu_icon_background"
-            android:scaleType="center"
-            android:src="@mipmap/avatar_setting" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2dp"
-            android:text="设为头像"
-            android:textColor="@color/white"
-            android:textSize="8sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/presentDetailActivity_linearLayout_menu_download"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="25dp"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:background="@drawable/menu_icon_background"
-            android:scaleType="center"
-            android:src="@mipmap/download" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2dp"
-            android:text="下载"
-            android:textColor="@color/white"
-            android:textSize="8sp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/presentDetailActivity_linearLayout_menu_collection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:background="@drawable/menu_icon_background"
-            android:scaleType="center"
-            android:src="@mipmap/collection" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2dp"
-            android:text="收藏"
-            android:textColor="@color/white"
-            android:textSize="8sp" />
-
-    </LinearLayout>
 
 </LinearLayout>

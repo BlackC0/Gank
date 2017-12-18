@@ -56,7 +56,7 @@ public class DisplayUtil {
     }
 
     public static String sizeOfImageforFullWidth(Context context, float dpValue) {
-        return "?imageView/0/w/"
+        return "?imageView2/0/w/"
                 + getScreenWidth(context) + "/h/" + dip2px(context, dpValue);
     }
 

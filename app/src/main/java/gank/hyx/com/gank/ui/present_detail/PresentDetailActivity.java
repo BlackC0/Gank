@@ -1,10 +1,17 @@
 package gank.hyx.com.gank.ui.present_detail;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -12,9 +19,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +40,8 @@ import gank.hyx.com.gank.view.MyPopupWindows;
 
 public class PresentDetailActivity extends BaseActivity implements PresentDetailContract.View {
 
+
+    private static final int SEND_CODE = 0x99;
     @BindView(R.id.presentDetailActivity_ImageView_item)
     ImageView presentDetailActivity_ImageView_item;
 
@@ -43,7 +55,10 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
     private boolean menuShow;
     private int menuShowTime = 0;
     private static final Object menuLock = new Object();
+    private String path = "";
 
+    private static final int EXPORT_WRITE_EXTERNAL_STORAGE_REQUEST_CODE_SEND = 0x91;
+    private static final int EXPORT_WRITE_EXTERNAL_STORAGE_REQUEST_CODE_DOWNLOAD = 0x92;
 
     private Handler handler = new Handler() {
         @Override
@@ -78,17 +93,23 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
                         }
                     }
                     break;
+                case 2:
+                    gotoHeaderPopWindow();
+                    gotoMenuPopWindow();
+                    break;
             }
         }
     };
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_present_detail);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         ButterKnife.bind(this);
         mActivity = this;
-        new PresentDetailPresenter(this);
+        new PresentDetailPresenter(this, mActivity);
     }
 
 
@@ -108,32 +129,59 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
 
         initHeaderPopWindows();
         initMenuPopWindows();
+        handler.sendEmptyMessageDelayed(2, 500);
     }
 
     @Override
     public void back() {
-
+        finish();
     }
 
     @Override
-    public void send() {
+    public void send(String path) {
+        this.path = path;
+        File shareFile = new File(path);
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.putExtra(Intent.EXTRA_STREAM,
+                Uri.fromFile(shareFile));
+        share.setType("*/*");//此处可发送多种文件
+        startActivityForResult(Intent.createChooser(share, "分享图片"), SEND_CODE);
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case SEND_CODE:
+                File file = new File(path);
+                if (file.exists()) {
+                    file.delete();
+                }
+                break;
+        }
     }
 
     @Override
     public void avatarSetting() {
+        // TODO: 2017/12/18 发送头像修改的广播出去
+
 
     }
 
     @Override
-    public void download() {
-
+    public void download(String path) {
+        Toast.makeText(mActivity, "文件下载成功，保存在shareImg\\" + desc + ".png", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void collection() {
-
+    public void collection(boolean state) {
+        if (state) {
+            Toast.makeText(mActivity, "收藏成功！", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(mActivity, "已经收藏了！", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     @Override
     public void setPresenter(PresentDetailContract.Presenter mPresenter) {
@@ -169,7 +217,7 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
         headerPopWindows.setOutsideTouchable(false);
         headerPopWindows.setTouchable(true);
         headerPopWindows.setAnimationStyle(R.style.headerPopupAnimation);
-        headerPopWindows.setFocusable(true);
+        headerPopWindows.setFocusable(false);
     }
 
     private void dismissHeaderPopWindow() {
@@ -184,15 +232,21 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
                 headerPopWindows.showAtLocation(presentDetailActivity_ImageView_item, Gravity.TOP, 0, 0);
                 headerShow = true;
                 synchronized (headerLock) {
-                    headerShowTime += 5;
+                    headerShowTime += 20;
                     handler.sendEmptyMessage(0);
                 }
             }
         } else {
             synchronized (headerLock) {
-                headerShowTime += 5;
+                headerShowTime = 0;
             }
         }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        permissionResult(requestCode, grantResults);
     }
 
     private MyPopupWindows menuPopWindows;
@@ -217,10 +271,10 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
 
         menuPopWindows = new MyPopupWindows(menuPop, mActivity, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         menuPopWindows.setBackgroundDrawable(new BitmapDrawable());
-        menuPopWindows.setAnimationStyle(R.style.menuPopupAnimation);
         menuPopWindows.setOutsideTouchable(false);
         menuPopWindows.setTouchable(true);
-        menuPopWindows.setFocusable(true);
+        menuPopWindows.setAnimationStyle(R.style.menuPopupAnimation);
+        menuPopWindows.setFocusable(false);
     }
 
     private void dismissMenuPopWindow() {
@@ -235,13 +289,13 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
                 menuPopWindows.showAtLocation(presentDetailActivity_ImageView_item, Gravity.BOTTOM, 0, 0);
                 menuShow = true;
                 synchronized (menuLock) {
-                    menuShowTime += 5;
+                    menuShowTime += 20;
                     handler.sendEmptyMessage(1);
                 }
             }
         } else {
             synchronized (menuLock) {
-                menuShowTime += 5;
+                menuShowTime = 0;
             }
         }
     }
@@ -254,20 +308,64 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
                     mPresenter.prepareBack();
                     break;
                 case R.id.presentDetailActivity_linearLayout_menu_send:
-                    mPresenter.prepareSend();
+                    checkPermission(0);
                     break;
                 case R.id.presentDetailActivity_linearLayout_menu_avatar_setting:
-                    mPresenter.prepareAvatarSetting();
+                    mPresenter.prepareAvatarSetting(url);
                     break;
                 case R.id.presentDetailActivity_linearLayout_menu_download:
-                    mPresenter.prepareDownload();
+                    checkPermission(1);
                     break;
                 case R.id.presentDetailActivity_linearLayout_menu_collection:
-                    mPresenter.prepareCollection();
+                    mPresenter.prepareCollection(desc, url);
                     break;
             }
         }
     };
 
+    private void checkPermission(int actionType) {
+        switch (actionType) {
+            case 0://send
+                if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) &&
+                        (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                != PackageManager.PERMISSION_GRANTED)) {
+                    //申请WRITE_EXTERNAL_STORAGE权限
+                    ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXPORT_WRITE_EXTERNAL_STORAGE_REQUEST_CODE_SEND);
+                    return;
+                }
+                mPresenter.prepareSend(url);
+                break;
+            case 1://download
+                if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) &&
+                        (ContextCompat.checkSelfPermission(mActivity, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                != PackageManager.PERMISSION_GRANTED)) {
+                    //申请WRITE_EXTERNAL_STORAGE权限
+                    ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXPORT_WRITE_EXTERNAL_STORAGE_REQUEST_CODE_DOWNLOAD);
+                    return;
+                }
+                mPresenter.prepareDownload(desc, url);
+                break;
+        }
+    }
+
+    private void permissionResult(int requestCode, int[] grantResults) {
+        switch (requestCode) {
+            case EXPORT_WRITE_EXTERNAL_STORAGE_REQUEST_CODE_SEND:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mPresenter.prepareSend(url);
+                    return;
+                }
+                Toast.makeText(mActivity, "分享图片及下载保存需要文件访问权限，请在设置中开启相关权限", Toast.LENGTH_SHORT).show();
+                break;
+            case EXPORT_WRITE_EXTERNAL_STORAGE_REQUEST_CODE_DOWNLOAD:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    mPresenter.prepareDownload(desc, url);
+                    return;
+                }
+                Toast.makeText(mActivity, "分享图片及下载保存需要文件访问权限，请在设置中开启相关权限", Toast.LENGTH_SHORT).show();
+                break;
+        }
+
+    }
 
 }

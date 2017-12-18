@@ -2,6 +2,7 @@ package gank.hyx.com.gank.ui.edit_list_content;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import flyn.Eyes;
 import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.ui.BaseActivity;
 
@@ -41,6 +43,7 @@ public class EditListsContentActivity extends BaseActivity implements EditListsC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_lists_content);
         ButterKnife.bind(this);
+        Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.toolbar_bg));
         mView = this;
         mActivity = this;
         new EditListsContentPresenter(mView, mActivity);

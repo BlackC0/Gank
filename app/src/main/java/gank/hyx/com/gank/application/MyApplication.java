@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.liulishuo.filedownloader.FileDownloader;
 import com.squareup.leakcanary.LeakCanary;
 
 import gank.hyx.com.gank.tool.Constant;
@@ -14,10 +15,15 @@ import gank.hyx.com.gank.tool.Constant;
 
 public class MyApplication extends Application {
 
+    public static MyApplication mainApplication;
+
     @Override
     public void onCreate() {
         super.onCreate();
+        mainApplication = this;
         initListContentOption();
+        FileDownloader.init(mainApplication);
+
     }
 
     private void initListContentOption() {

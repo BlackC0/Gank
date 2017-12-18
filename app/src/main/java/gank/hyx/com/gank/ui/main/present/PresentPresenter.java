@@ -37,23 +37,25 @@ public class PresentPresenter implements PresentContract.Presenter {
 
     @Override
     public void start() {
-        Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
-        Call<JsonObject> info = request.getCommonData("福利", 50, pager);
-        info.enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
-                if (rh.isResponseOK()) {
-                    data = initResponseJson(response.body());
-                    mView.refresh(data);
+        if (data == null) {
+            Request request = ((BaseActivity) mActivity).getRetrofit(Constant.CommonDataUrl).create(Request.class);
+            Call<JsonObject> info = request.getCommonData("福利", 50, pager);
+            info.enqueue(new Callback<JsonObject>() {
+                @Override
+                public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                    RetrofitResponseHelper rh = new RetrofitResponseHelper(response);
+                    if (rh.isResponseOK()) {
+                        data = initResponseJson(response.body());
+                        mView.refresh(data);
+                    }
                 }
-            }
 
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                Toast.makeText(mActivity, "网络连接出错，请稍后重试", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onFailure(Call<JsonObject> call, Throwable t) {
+                    Toast.makeText(mActivity, "网络连接出错，请稍后重试", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     @Override
@@ -104,7 +106,7 @@ public class PresentPresenter implements PresentContract.Presenter {
 
     @Override
     public void preparePresentDetail(int position) {
-        CommonData.Data img = data.getResults().get(position-1);
+        CommonData.Data img = data.getResults().get(position);
         mView.gotoPresentDetail(img.getUrl(), img.getDesc());
     }
 

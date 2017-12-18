@@ -1,5 +1,9 @@
 package gank.hyx.com.gank.tool;
 
+import android.os.Environment;
+
+import java.io.File;
+
 /**
  * Created by Black.C on 2017/7/28.
  */
@@ -25,5 +29,13 @@ public class Constant {
 
     public static final String TableName2 = "HistoryMap";
 
+    public static final String TableName3 = "Collection";
+    public static final String Collection_sp1 = "avatar";
+
+
     public static final int EDIT_LISTS_CONTENT = 10000;
+
+    public static final String shareImg = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "shareImg" + File.separator;
+
+
 }

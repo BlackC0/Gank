@@ -85,11 +85,11 @@ public class ListContentFragment extends BaseFragment implements ListContentCont
             }
         });
         listContentFragment_RecyclerView.setAdapter(adapter);
+        mPresenter.start();
     }
 
     @Override
     public void onResume() {
-        mPresenter.start();
         super.onResume();
     }
 
