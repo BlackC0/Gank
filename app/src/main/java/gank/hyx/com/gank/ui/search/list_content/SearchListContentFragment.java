@@ -1,6 +1,7 @@
 package gank.hyx.com.gank.ui.search.list_content;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,8 +21,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import gank.hyx.com.gank.R;
+import gank.hyx.com.gank.listener.RecyclerViewListClickListener;
 import gank.hyx.com.gank.network.model.SearchData;
 import gank.hyx.com.gank.ui.BaseFragment;
+import gank.hyx.com.gank.ui.goods_detail.GoodsDetailActivity;
 
 public class SearchListContentFragment extends BaseFragment implements SearchListContentContract.View {
 
@@ -70,6 +73,12 @@ public class SearchListContentFragment extends BaseFragment implements SearchLis
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         searchListContentFragment_RecyclerView.setLayoutManager(mLayoutManager);
         adapter = new SearchListContentAdapter(mActivity);
+        adapter.setOnItemClickListener(new RecyclerViewListClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                gotoGoodsDetail(data.getResults().get(position).getUrl(), "", data.getResults().get(position).getDesc());
+            }
+        });
         searchListContentFragment_RecyclerView.setAdapter(adapter);
         searchListContentFragment_RelativeLayout_loadingBackground.setVisibility(View.VISIBLE);
         searchListContentFragment_TwinklingRefreshLayout.setEnableRefresh(false);
@@ -115,6 +124,14 @@ public class SearchListContentFragment extends BaseFragment implements SearchLis
             searchListContentFragment_TwinklingRefreshLayout.setEnableRefresh(false);
             searchListContentFragment_TwinklingRefreshLayout.setEnableLoadmore(false);
         }
+    }
+
+    public void gotoGoodsDetail(String url, String imgUrl, String desc) {
+        Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+        intent.putExtra("url", url);
+        intent.putExtra("imgUrl", imgUrl);
+        intent.putExtra("desc", desc);
+        startActivity(intent);
     }
 
     @Override

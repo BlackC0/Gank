@@ -16,7 +16,6 @@
             android:id="@+id/goodsDetailActivity_linearLayout_title_2"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:layout_marginTop="11dp"
             android:background="@color/toolbar_bg"
             android:gravity="center_vertical"
             android:orientation="horizontal">

@@ -13,7 +13,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.WebSettings;
@@ -31,7 +30,6 @@ import java.util.concurrent.ExecutionException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import flyn.Eyes;
 import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.tool.DisplayUtil;
 import gank.hyx.com.gank.ui.BaseActivity;
@@ -161,7 +159,6 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
             goodsDetailActivity_linearLayout_no_Image.setVisibility(View.VISIBLE);
             goodsDetailActivity_appBarLayout.setVisibility(View.GONE);
             goodsDetailActivity_WebView.setVisibility(View.GONE);
-            Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.toolbar_bg));
             WebSettings webSettings = goodsDetailActivity_WebView_2.getSettings();
             webSettings.setUseWideViewPort(true);
             webSettings.setJavaScriptEnabled(true);
@@ -186,9 +183,27 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
             goodsDetailActivity_WebView_2.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                    try {
+                        if (url.startsWith("bilibili://")
+                                ||url.startsWith("miaopai://")) {
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                            startActivity(intent);
+                            return true;
+                        }
+                    } catch (Exception e) {
+                        return true;
+                    }
                     view.loadUrl(url);
                     return true;
                 }
+
+                @Override
+                public void onPageFinished(WebView view, String url) {
+                    super.onPageFinished(view, url);
+                    //使webview切换页面后高度自适应，防止留下大片空白
+                    view.loadUrl("javascript:App.resize(document.body.getBoundingClientRect().height)");
+                }
+
             });
             goodsDetailActivity_WebView_2.loadUrl(url);
             goodsDetailActivity_textView_title_2.setText(desc);
@@ -196,7 +211,6 @@ public class GoodsDetailActivity extends BaseActivity implements GoodsDetailCont
             goodsDetailActivity_linearLayout_no_Image.setVisibility(View.GONE);
             goodsDetailActivity_appBarLayout.setVisibility(View.VISIBLE);
             goodsDetailActivity_WebView.setVisibility(View.VISIBLE);
-            Eyes.setStatusBarColorForCollapsingToolbar(this, goodsDetailActivity_appBarLayout, goodsDetailActivity_collapsingToolbarLayout, goodsDetailActivity_toolbar_back, ContextCompat.getColor(this, R.color.toolbar_bg));
             WebSettings webSettings = goodsDetailActivity_WebView.getSettings();
             webSettings.setUseWideViewPort(true);
             webSettings.setJavaScriptEnabled(true);

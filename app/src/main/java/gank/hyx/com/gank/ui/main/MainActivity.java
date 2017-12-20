@@ -1,13 +1,11 @@
 package gank.hyx.com.gank.ui.main;
 
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import flyn.Eyes;
 import gank.hyx.com.gank.R;
 import gank.hyx.com.gank.ui.BaseActivity;
 import gank.hyx.com.gank.ui.BaseFragment;
@@ -34,7 +32,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.toolbar_bg));
+//        Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.toolbar_bg));
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mActivity = this;
