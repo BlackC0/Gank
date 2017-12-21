@@ -27,4 +27,9 @@
         <item name="android:fillAfter">true</item>
     </style>
 
+    <style name="myEditTextStyle" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/gray2</item>
+        <item name="colorControlActivated">@color/gray2</item>
+    </style>
+
 </resources>
