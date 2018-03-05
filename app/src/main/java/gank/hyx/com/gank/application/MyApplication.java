@@ -36,10 +36,11 @@ public class MyApplication extends Application {
         // Normal app init code...
 
         //如第一次进入没有sp在应用里 就初始化列表项
-        SharedPreferences mSharedPreferences = getSharedPreferences(Constant.TableName1, Context.MODE_PRIVATE);
-        boolean hasInit = mSharedPreferences.getBoolean("hasInit", false);
+        SharedPreferences listContentSp = getSharedPreferences(Constant.TableName1, Context.MODE_PRIVATE);
+        SharedPreferences collectionSp = getSharedPreferences(Constant.TableName3, Context.MODE_PRIVATE);
+        boolean hasInit = listContentSp.getBoolean("hasInit", false);
         if (!hasInit) {
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
+            SharedPreferences.Editor editor = listContentSp.edit();
             editor.putBoolean(Constant.ListContent_sp1, true);
             editor.putBoolean(Constant.ListContent_sp2, true);
             editor.putBoolean(Constant.ListContent_sp3, true);
@@ -50,6 +51,13 @@ public class MyApplication extends Application {
             editor.putBoolean(Constant.ListContent_sp8, false);
             editor.putBoolean("hasInit", true);
             editor.commit();
+
+            collectionSp.edit().putString(Constant.Collection_sp1, "");
+            collectionSp.edit().putString(Constant.Collection_sp2, "未命名");
+            editor.commit();
+
         }
+
+
     }
 }

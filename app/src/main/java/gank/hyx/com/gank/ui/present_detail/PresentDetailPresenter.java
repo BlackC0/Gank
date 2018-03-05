@@ -3,7 +3,6 @@ package gank.hyx.com.gank.ui.present_detail;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import com.liulishuo.filedownloader.BaseDownloadTask;
 import com.liulishuo.filedownloader.FileDownloadLargeFileListener;
@@ -55,7 +54,6 @@ public class PresentDetailPresenter implements PresentDetailContract.Presenter {
                 .setListener(new FileDownloadLargeFileListener() {
                     @Override
                     protected void pending(BaseDownloadTask task, long soFarBytes, long totalBytes) {
-                        Log.d("hyx", "");
                     }
 
                     @Override
@@ -105,6 +103,7 @@ public class PresentDetailPresenter implements PresentDetailContract.Presenter {
         editor.putString(Constant.Collection_sp1, imgUrl);
         editor.commit();
         mView.avatarSetting();
+
     }
 
 

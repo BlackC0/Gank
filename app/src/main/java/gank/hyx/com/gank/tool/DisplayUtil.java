@@ -60,6 +60,11 @@ public class DisplayUtil {
                 + getScreenWidth(context) + "/h/" + dip2px(context, dpValue);
     }
 
+    public static String sizeOfImage(Context context, float widthDp, float heightDp) {
+        return "?imageView2/0/w/"
+                + dip2px(context, widthDp) + "/h/" + dip2px(context, heightDp);
+    }
+
     public static int getScreenHeight(Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);

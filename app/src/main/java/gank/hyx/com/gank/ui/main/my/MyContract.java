@@ -10,9 +10,22 @@ import gank.hyx.com.gank.ui.BaseView;
 public interface MyContract {
 
     interface View extends BaseView<Presenter> {
+
+        void initView(String imgUrl,String nickName);
+
+        void gotoMyCollection();
+
+        void cleanCache();
+
     }
 
     interface Presenter extends BasePresenter {
+
+        void prepareCleanCache();
+
+        void prepareMyCollection();
+
+
     }
 
 }

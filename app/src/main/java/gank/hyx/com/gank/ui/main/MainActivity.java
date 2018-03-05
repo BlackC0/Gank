@@ -12,6 +12,7 @@ import gank.hyx.com.gank.ui.BaseFragment;
 import gank.hyx.com.gank.ui.main.goods.GoodsFragment;
 import gank.hyx.com.gank.ui.main.goods.GoodsPresenter;
 import gank.hyx.com.gank.ui.main.my.MyFragment;
+import gank.hyx.com.gank.ui.main.my.MyPresenter;
 import gank.hyx.com.gank.ui.main.present.PresentFragment;
 import gank.hyx.com.gank.ui.main.present.PresentPresenter;
 import gank.hyx.com.gank.view.NoScrollViewPager;
@@ -32,11 +33,11 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        Eyes.setStatusBarColor(this, ContextCompat.getColor(this, R.color.toolbar_bg));
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mActivity = this;
         initView();
+
     }
 
     private void initView() {
@@ -47,8 +48,9 @@ public class MainActivity extends BaseActivity {
         fragmentList.add(presentFragment);
         fragmentList.add(myFragment);
 
-        new GoodsPresenter(goodsFragment,mActivity);
-        new PresentPresenter(presentFragment,mActivity);
+        new GoodsPresenter(goodsFragment, mActivity);
+        new PresentPresenter(presentFragment, mActivity);
+        new MyPresenter(myFragment, mActivity);
 
         adapter = new MainPagerAdapter(getSupportFragmentManager(), fragmentList, this);
         mainActivity_NoScrollViewPager.setNoScroll(true);

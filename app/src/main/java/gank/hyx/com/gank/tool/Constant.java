@@ -31,11 +31,12 @@ public class Constant {
 
     public static final String TableName3 = "Collection";
     public static final String Collection_sp1 = "avatar";
+    public static final String Collection_sp2 = "nickName";
 
 
     public static final int EDIT_LISTS_CONTENT = 10000;
 
     public static final String shareImg = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + "shareImg" + File.separator;
 
-
+    public static final String AVATAR_UPDATE = "gank.hyx.com.gank.AVATAR_UPDATE";
 }

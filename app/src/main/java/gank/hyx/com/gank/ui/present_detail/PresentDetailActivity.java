@@ -12,6 +12,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -30,6 +31,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import gank.hyx.com.gank.R;
+import gank.hyx.com.gank.tool.Constant;
 import gank.hyx.com.gank.tool.DisplayUtil;
 import gank.hyx.com.gank.ui.BaseActivity;
 import gank.hyx.com.gank.view.MyPopupWindows;
@@ -163,9 +165,8 @@ public class PresentDetailActivity extends BaseActivity implements PresentDetail
 
     @Override
     public void avatarSetting() {
-        // TODO: 2017/12/18 发送头像修改的广播出去
-
-
+        Toast.makeText(mActivity,"头像设置成功！",Toast.LENGTH_SHORT).show();
+        LocalBroadcastManager.getInstance(mActivity).sendBroadcast(new Intent(Constant.AVATAR_UPDATE));
     }
 
     @Override
